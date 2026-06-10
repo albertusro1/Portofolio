@@ -188,24 +188,48 @@
             <div class="dashboard-body">
               <!-- Tab 1: Profile View -->
               <div class="dash-content active" id="dash-profile">
-                <div class="profile-image-container">
-                  <img src="rowan_profile.jpg" alt="Albertus Rowan Profile Picture" class="dashboard-profile-img">
-                  <!-- Tech HUD Overlays -->
-                  <div class="hud-badge top-left">
-                    <span class="hud-pulse"></span> SYS_ANALYST.EXE
-                  </div>
-                  <div class="hud-badge top-right">
-                    <i data-lucide="database" class="hud-icon"></i> DB_HA_ACTIVE
-                  </div>
-                  <div class="hud-stats-overlay">
-                    <div class="hud-stat-item">
-                      <span class="hud-stat-val">GPA 3.91</span>
-                      <span class="hud-stat-lbl">Summa Cum Laude</span>
+                <div class="profile-tab-split">
+                  <!-- Left: Portrait Photo Frame -->
+                  <div class="profile-photo-frame">
+                    <img src="rowan_profile.jpg" alt="Albertus Rowan Profile Picture" class="profile-photo-portrait">
+                    <div class="hud-badge-compact">
+                      <span class="hud-pulse"></span> SYS_ACTIVE
                     </div>
-                    <div class="hud-stat-divider"></div>
-                    <div class="hud-stat-item">
-                      <span class="hud-stat-val">50K+/hr</span>
-                      <span class="hud-stat-lbl">Throughput Optimized</span>
+                  </div>
+                  
+                  <!-- Right: High-Tech Credentials Panel -->
+                  <div class="profile-info-panel font-mono">
+                    <div class="info-header">SYS_ANALYST.EXE PROFILE</div>
+                    
+                    <div class="info-grid">
+                      <div class="info-row">
+                        <span class="info-label">USER:</span>
+                        <span class="info-value text-cyan">Albertus Rowan</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-label">ROLE:</span>
+                        <span class="info-value">System Analyst @ Bank OCBC</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-label">EDUCATION:</span>
+                        <span class="info-value text-purple">CS, Brawijaya University</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-label">CREDENTIALS:</span>
+                        <span class="info-value text-emerald">GPA 3.91 (Summa Cum Laude)</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-label">THROUGHPUT:</span>
+                        <span class="info-value text-cyan">50K+ requests/hour</span>
+                      </div>
+                      <div class="info-row">
+                        <span class="info-label">COMPLIANCE:</span>
+                        <span class="info-value text-purple">OJK / ISO 8583 / HA DB</span>
+                      </div>
+                    </div>
+                    
+                    <div class="info-footer-status">
+                      <span class="status-indicator-dot"></span> Core Systems Nominal
                     </div>
                   </div>
                 </div>

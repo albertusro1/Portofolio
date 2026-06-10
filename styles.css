@@ -777,116 +777,134 @@ body:not(.light-mode) .moon-icon {
   transform: translateY(0);
 }
 
-/* TAB 1: Profile view content */
-.profile-image-container {
-  position: relative;
+/* TAB 1: Profile view content (Split layout) */
+.profile-tab-split {
+  display: flex;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  padding: 20px;
+  gap: 20px;
+  align-items: center;
 }
 
-.dashboard-profile-img {
+.profile-photo-frame {
+  position: relative;
+  width: 42%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.profile-photo-portrait {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
-  filter: brightness(0.9);
-  transition: filter var(--transition-speed) ease;
+  object-position: center 30%; /* Focuses on face/shoulders in a portrait framing */
+  filter: brightness(0.92);
+  transition: transform var(--transition-speed) ease, filter var(--transition-speed) ease;
 }
 
-.dashboard-profile-img:hover {
+.profile-photo-frame:hover .profile-photo-portrait {
+  transform: scale(1.05);
   filter: brightness(1);
 }
 
-.hud-badge {
+.hud-badge-compact {
   position: absolute;
-  background: rgba(3, 5, 8, 0.75);
-  border: 1px solid var(--border-color-hover);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 6px 14px;
+  top: 10px;
+  left: 10px;
+  background: rgba(3, 5, 8, 0.8);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 4px 10px;
   border-radius: 50px;
   font-family: var(--font-family-mono);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: var(--text-main);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.hud-badge.top-left {
-  top: 16px;
-  left: 16px;
-  border-left: 3px solid var(--primary-color);
-}
-
-.hud-badge.top-right {
-  top: 16px;
-  right: 16px;
-  border-left: 3px solid var(--secondary-color);
-}
-
-.hud-pulse {
-  width: 6px;
-  height: 6px;
-  background-color: var(--primary-color);
-  border-radius: 50%;
-  display: inline-block;
-  animation: pulse 1.8s infinite;
-}
-
-.hud-icon {
-  width: 12px;
-  height: 12px;
-  color: var(--secondary-color);
-}
-
-.hud-stats-overlay {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  background: rgba(3, 5, 8, 0.8);
-  border: 1px solid var(--border-color);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 10px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-}
-
-.hud-stat-item {
+.profile-info-panel {
+  flex-grow: 1;
+  width: 58%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  justify-content: space-between;
+  background: rgba(3, 5, 8, 0.45);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.hud-stat-val {
-  font-family: var(--font-family-title);
-  font-size: 1.2rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hud-stat-lbl {
-  font-size: 0.72rem;
+.info-header {
+  font-size: 0.8rem;
   color: var(--text-muted);
-  font-weight: 500;
-  margin-top: 2px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
 }
 
-.hud-stat-divider {
-  width: 1px;
-  height: 30px;
-  background: var(--border-color-hover);
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-row {
+  display: flex;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.03);
+  padding-bottom: 6px;
+}
+
+.info-label {
+  color: var(--text-muted);
+  width: 100px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.info-value {
+  color: var(--text-main);
+  word-break: break-word;
+}
+
+.info-footer-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  color: var(--emerald-color);
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+  margin-top: 12px;
+}
+
+.status-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--emerald-color);
+  display: inline-block;
+  animation: pulse-green 1.8s infinite;
+}
+
+@keyframes pulse-green {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
 /* TAB 2: Architecture diagram */
@@ -1094,7 +1112,29 @@ body:not(.light-mode) .moon-icon {
   }
   
   .dashboard-body {
-    height: 350px;
+    height: auto;
+    min-height: 380px;
+  }
+  
+  .profile-tab-split {
+    flex-direction: column;
+    height: auto;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .profile-photo-frame {
+    width: 100%;
+    height: 250px;
+  }
+  
+  .profile-photo-portrait {
+    object-position: center 30%;
+  }
+  
+  .profile-info-panel {
+    width: 100%;
+    height: auto;
   }
   
   .diagram-flow {
