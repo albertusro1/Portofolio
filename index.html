@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Albertus Rowan | System Analyst & Backend Engineer Portfolio</title>
+  <meta name="description" content="Portfolio of Albertus Rowan, a professional System Analyst and Backend Engineer specialized in microservices, enterprise API integrations, and low-latency system design.">
+  <meta name="keywords" content="Albertus Rowan, Rowan, System Analyst, Backend Engineer, OCBC ID, Software Architect, Golang, Kafka, Microservices, API Integration, Indonesia">
+  <meta name="author" content="Albertus Rowan">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Albertus Rowan | System Analyst & Backend Engineer">
+  <meta property="og:description" content="Explore Rowan's portfolio featuring system architecture simulations, enterprise API integration case studies, and scalable backend projects.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/42608543?v=4">
+  <meta property="og:url" content="https://github.com/albertusro1/Portofolio">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Albertus Rowan | System Analyst & Backend Engineer">
+  <meta name="twitter:description" content="Explore Rowan's portfolio featuring system architecture simulations, enterprise API integration case studies, and scalable backend projects.">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/42608543?v=4">
+
+  <!-- Google Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Canvas for Particle Background -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-header">
+    <div class="navbar-container">
+      <a href="#" class="nav-brand" id="nav-brand">
+        <span class="brand-text">ROWAN</span><span class="brand-dot">.</span><span class="brand-title">SYSTEMS</span>
+      </a>
+      
+      <nav class="nav-links" id="nav-menu">
+        <a href="#about" class="nav-item">About</a>
+        <a href="#simulator" class="nav-item">System Simulator</a>
+        <a href="#skills" class="nav-item">Skills</a>
+        <a href="#experience" class="nav-item">Experience</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#terminal" class="nav-item-terminal">
+          <i data-lucide="terminal"></i> CLI Console
+        </a>
+      </nav>
+      
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Light/Dark Mode">
+          <i data-lucide="sun" class="sun-icon"></i>
+          <i data-lucide="moon" class="moon-icon"></i>
+        </button>
+        <a href="https://github.com/albertusro1" target="_blank" rel="noopener noreferrer" class="btn-github" id="btn-github-nav">
+          <i data-lucide="github"></i>
+        </a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span> Available for Architecture Design & Engineering
+      </div>
+      <h1 class="hero-title">
+        <span class="glow-text-primary">Bridging Complex Business</span><br>
+        <span class="glow-text-secondary">With High-Availability Code</span>
+      </h1>
+      <p class="hero-subtitle">
+        I am a <strong>System Analyst & Backend Engineer</strong>. I design fault-tolerant microservices, orchestrate secure event-driven integrations, and optimize enterprise systems handling over 50,000 requests/hour.
+      </p>
+      
+      <div class="hero-cta">
+        <a href="#simulator" class="btn-primary" id="cta-simulate">
+          <i data-lucide="cpu"></i> Run Architecture Simulator
+        </a>
+        <a href="#terminal" class="btn-secondary" id="cta-cli">
+          <i data-lucide="terminal"></i> Launch Developer Console
+        </a>
+      </div>
+
+      <!-- Hero Stats Visuals -->
+      <div class="stats-grid">
+        <div class="stat-card glass-panel" id="stat-latency">
+          <div class="stat-value text-gradient-cyan">60%+</div>
+          <div class="stat-label">Latency Reduction (300ms ➔ 50ms)</div>
+        </div>
+        <div class="stat-card glass-panel" id="stat-throughput">
+          <div class="stat-value text-gradient-purple">50K+</div>
+          <div class="stat-label">API Requests / Hour Managed</div>
+        </div>
+        <div class="stat-card glass-panel" id="stat-downtime">
+          <div class="stat-value text-gradient-emerald">50%+</div>
+          <div class="stat-label">DB Failover Downtime Slashed</div>
+        </div>
+        <div class="stat-card glass-panel" id="stat-scale">
+          <div class="stat-value text-gradient-amber">1,000+</div>
+          <div class="stat-label">Enterprise Servers Standardized</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="about-section" id="about">
+    <div class="section-container">
+      <div class="grid-2col">
+        <div class="about-content">
+          <h2 class="section-title"><span class="title-index">01.</span> Professional Overview</h2>
+          <p class="about-text">
+            Based in Jakarta, Indonesia, I serve as a <strong>System Analyst</strong> at <strong>Bank OCBC Indonesia</strong>. With a deep foundation in Computer Science from Brawijaya University (GPA 3.91), my career bridges the gap between stakeholder specifications and high-performance backend systems.
+          </p>
+          <p class="about-text">
+            I specialize in orchestrating real-time financial flows (like QRIS payments, point redemptions, and settlement algorithms) and converting complex regulatory/business rules into detailed technical plans (BRDs, FRDs) for team execution. My goal is to build scalable, observable systems that operate seamlessly under heavy enterprise loads.
+          </p>
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <i data-lucide="check-circle-2" class="highlight-icon text-cyan"></i>
+              <span>Cross-border collaboration on regional replatforms (SG, MY, HK, ID)</span>
+            </div>
+            <div class="highlight-item">
+              <i data-lucide="check-circle-2" class="highlight-icon text-purple"></i>
+              <span>High-concurrency systems design in Golang, Java, and Svelte</span>
+            </div>
+            <div class="highlight-item">
+              <i data-lucide="check-circle-2" class="highlight-icon text-emerald"></i>
+              <span>Standardizing telemetry monitoring (Prometheus, Grafana)</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about-visual glass-panel">
+          <div class="visual-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="visual-title">profile_telemetry.log</span>
+          </div>
+          <div class="visual-body font-mono">
+            <p><span class="log-time">[19:57:13]</span> <span class="log-tag info">INFO</span> Initializing profile...</p>
+            <p><span class="log-time">[19:57:13]</span> <span class="log-tag success">SUCCESS</span> Rowan loaded successfully</p>
+            <p><span class="log-time">[19:57:14]</span> <span class="log-tag info">INFO</span> Current Role: System Analyst @ OCBC ID</p>
+            <p><span class="log-time">[19:57:14]</span> <span class="log-tag info">INFO</span> Exp: 2+ Years Enterprise Systems</p>
+            <p><span class="log-time">[19:57:15]</span> <span class="log-tag warn">WARN</span> Caching layer: Redis cluster active</p>
+            <p><span class="log-time">[19:57:15]</span> <span class="log-tag info">INFO</span> Database HA: Active-Active Multi-Site</p>
+            <p><span class="log-time">[19:57:16]</span> <span class="log-tag info">INFO</span> Education: Brawijaya University (CS)</p>
+            <p><span class="log-time">[19:57:16]</span> <span class="log-tag info">INFO</span> GPA: 3.91 / 4.00 (Summa Cum Laude)</p>
+            
+            <div class="profile-image-container">
+              <img src="https://avatars.githubusercontent.com/u/42608543?v=4" alt="Albertus Rowan Profile Picture" class="profile-avatar">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- System Architecture Simulator Section -->
+  <section class="simulator-section" id="simulator">
+    <div class="section-container">
+      <h2 class="section-title text-center"><span class="title-index">02.</span> System Architecture Playground</h2>
+      <p class="section-subtitle text-center">
+        Select a transaction type to simulate real-time enterprise event-driven flows and trace visual API routing.
+      </p>
+
+      <div class="simulator-dashboard glass-panel">
+        <!-- Simulator Controls -->
+        <div class="sim-controls">
+          <h3 class="control-title">Transaction Flow Triggers</h3>
+          <div class="sim-buttons">
+            <button class="sim-btn active" data-flow="redemption" id="btn-flow-redemption">
+              <div class="sim-btn-icon"><i data-lucide="gift"></i></div>
+              <div class="sim-btn-text">
+                <span class="sim-btn-name">Loyalty Partner Redemption</span>
+                <span class="sim-btn-desc">Mobile App ➔ API Gateway ➔ Kafka ➔ Partner API</span>
+              </div>
+            </button>
+            
+            <button class="sim-btn" data-flow="qris" id="btn-flow-qris">
+              <div class="sim-btn-icon"><i data-lucide="qr-code"></i></div>
+              <div class="sim-btn-text">
+                <span class="sim-btn-name">QRIS Payment Point Offset</span>
+                <span class="sim-btn-desc">Mobile App ➔ Gateway ➔ Redis ➔ Ledger Posting</span>
+              </div>
+            </button>
+            
+            <button class="sim-btn" data-flow="failover" id="btn-flow-failover">
+              <div class="sim-btn-icon"><i data-lucide="database"></i></div>
+              <div class="sim-btn-text">
+                <span class="sim-btn-name">High-Availability DB Failover</span>
+                <span class="sim-btn-desc">Prometheus Alert ➔ HA Sync ➔ Auto Failover (50% faster)</span>
+              </div>
+            </button>
+          </div>
+          
+          <div class="sim-metrics glass-panel">
+            <div class="metric-item">
+              <span class="metric-label">Execution Latency</span>
+              <span class="metric-val" id="metric-latency">-- ms</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Transaction Status</span>
+              <span class="metric-val" id="metric-status">Idle</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">System Caching</span>
+              <span class="metric-val" id="metric-cache">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulator Canvas Area -->
+        <div class="sim-visual-area">
+          <div class="diagram-canvas">
+            <!-- SVG paths representing the connecting lines between nodes -->
+            <svg class="diagram-connections" viewBox="0 0 800 450">
+              <defs>
+                <linearGradient id="gradient-cyan-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00F2FE" />
+                  <stop offset="100%" stop-color="#7F00FF" />
+                </linearGradient>
+                <filter id="glow-effect" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              
+              <!-- Core Flow Connections -->
+              <path id="path-app-gw" d="M 120 225 L 260 225" class="connector-line" />
+              <path id="path-gw-srv" d="M 300 225 L 420 225" class="connector-line" />
+              <path id="path-srv-redis" d="M 440 205 L 440 120" class="connector-line" />
+              <path id="path-srv-kafka" d="M 460 225 L 580 225" class="connector-line" />
+              <path id="path-kafka-vendor" d="M 620 225 L 720 225" class="connector-line" />
+              <path id="path-srv-ledger" d="M 440 245 L 440 330" class="connector-line" />
+              <path id="path-alert-db" d="M 300 225 L 440 330" class="connector-line dash-line" style="display: none;" />
+
+              <!-- Flow Signal Pulses (Animated dynamically) -->
+              <circle id="signal-pulse-1" r="5" fill="#00F2FE" class="pulse-signal" style="display: none;"></circle>
+              <circle id="signal-pulse-2" r="5" fill="#7F00FF" class="pulse-signal" style="display: none;"></circle>
+              <circle id="signal-pulse-3" r="5" fill="#10B981" class="pulse-signal" style="display: none;"></circle>
+            </svg>
+
+            <!-- Node Elements Overlay -->
+            <div class="node-wrapper" style="top: 225px; left: 100px;" data-node="app">
+              <div class="node-icon"><i data-lucide="smartphone"></i></div>
+              <span class="node-label">User App</span>
+            </div>
+
+            <div class="node-wrapper" style="top: 225px; left: 280px;" data-node="gateway">
+              <div class="node-icon"><i data-lucide="shield-check"></i></div>
+              <span class="node-label">API Gateway</span>
+            </div>
+
+            <div class="node-wrapper" style="top: 100px; left: 440px;" data-node="redis">
+              <div class="node-icon"><i data-lucide="layers"></i></div>
+              <span class="node-label">Redis Cache</span>
+            </div>
+
+            <div class="node-wrapper" style="top: 225px; left: 440px;" data-node="service">
+              <div class="node-icon text-cyan"><i data-lucide="server"></i></div>
+              <span class="node-label">Loyalty Service</span>
+            </div>
+
+            <div class="node-wrapper" style="top: 350px; left: 440px;" data-node="ledger">
+              <div class="node-icon"><i data-lucide="database"></i></div>
+              <span class="node-label">General Ledger / DB</span>
+            </div>
+
+            <div class="node-wrapper" style="top: 225px; left: 600px;" data-node="kafka">
+              <div class="node-icon"><i data-lucide="message-square"></i></div>
+              <span class="node-label">Kafka Queue</span>
+            </div>
+
+            <div class="node-wrapper" style="top: 225px; left: 740px;" data-node="vendor">
+              <div class="node-icon"><i data-lucide="external-link"></i></div>
+              <span class="node-label">Partner APIs</span>
+            </div>
+          </div>
+          
+          <!-- Mock Logger Output -->
+          <div class="sim-terminal-output font-mono" id="sim-terminal">
+            <div class="terminal-log-line text-slate">[19:57:13] SYSTEM: Architecture simulation ready. Click any trigger to start flow.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Matrix Section -->
+  <section class="skills-section" id="skills">
+    <div class="section-container">
+      <h2 class="section-title"><span class="title-index">03.</span> Skills Matrix</h2>
+      <p class="section-subtitle">
+        A breakdown of the tools, languages, and technical engineering paradigms I employ in my work.
+      </p>
+
+      <div class="skills-grid">
+        <!-- Core Competencies -->
+        <div class="skills-category glass-panel" id="skills-cat-core">
+          <div class="category-header">
+            <i data-lucide="git-branch" class="text-cyan"></i>
+            <h3>Core Competencies</h3>
+          </div>
+          <ul class="skills-list">
+            <li>System Architecture Design</li>
+            <li>API & Webhook Integrations</li>
+            <li>Agile / Scrum (Jira & Confluence)</li>
+            <li>Requirements Engineering (BRD/FRD)</li>
+            <li>UAT & Test Strategies</li>
+            <li>Microservices Design</li>
+            <li>Event-Driven Architectures</li>
+            <li>General Ledger & Financial Settlement</li>
+          </ul>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="skills-category glass-panel" id="skills-cat-backend">
+          <div class="category-header">
+            <i data-lucide="cpu" class="text-purple"></i>
+            <h3>Backend Stack & Databases</h3>
+          </div>
+          <ul class="skills-list">
+            <li>Golang (High Concurrency)</li>
+            <li>PostgreSQL (High Availability)</li>
+            <li>Kafka & RabbitMQ</li>
+            <li>Svelte (Frontend Dashboards)</li>
+            <li>Java & Kotlin</li>
+            <li>Swagger / OpenAPI</li>
+            <li>Postman API Engineering</li>
+            <li>OAuth 2.0 & JWT Security</li>
+          </ul>
+        </div>
+
+        <!-- DevOps & Observability -->
+        <div class="skills-category glass-panel" id="skills-cat-devops">
+          <div class="category-header">
+            <i data-lucide="activity" class="text-emerald"></i>
+            <h3>DevOps & Telemetry</h3>
+          </div>
+          <ul class="skills-list">
+            <li>Docker & Containerization</li>
+            <li>Git & GitLab CI/CD</li>
+            <li>Jenkins Pipelines</li>
+            <li>Prometheus Monitoring</li>
+            <li>Grafana Dashboards</li>
+            <li>Telemetry Aggregation</li>
+            <li>Linux Server Management</li>
+            <li>Active-Active DB Replication</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Timeline Section -->
+  <section class="experience-section" id="experience">
+    <div class="section-container">
+      <h2 class="section-title"><span class="title-index">04.</span> Experience Timeline</h2>
+      <p class="section-subtitle">
+        My professional progression inside corporate banking and software engineering.
+      </p>
+
+      <div class="experience-layout">
+        <!-- Experience Tabs -->
+        <div class="experience-tabs" id="experience-tabs">
+          <button class="tab-btn active" data-exp="ocbc-sa" id="tab-ocbc-sa">OCBC Bank ID (SA)</button>
+          <button class="tab-btn" data-exp="ocbc-intern" id="tab-ocbc-intern">OCBC Bank ID (Intern)</button>
+        </div>
+
+        <!-- Experience Display Cards -->
+        <div class="experience-details-container glass-panel" id="experience-details">
+          <!-- OCBC SA Details -->
+          <div class="exp-detail-content active" id="exp-ocbc-sa">
+            <div class="exp-title-row">
+              <h3>System Analyst <span class="exp-company">@ Bank OCBC Indonesia</span></h3>
+              <span class="exp-date">Jun 2023 - Present</span>
+            </div>
+            
+            <ul class="exp-bullet-list">
+              <li>
+                <strong>Regional Replatforming:</strong> Dedicated SA/BA for Indonesia in a major regional replatforming initiative. Collaborated with cross-border counterparts to unify loyalty reward systems across 4 countries (SG, MY, HK, ID).
+              </li>
+              <li>
+                <strong>API Architecture:</strong> Designed specifications and integrated 30+ RESTful APIs routed through an enterprise API gateway, servicing over 50,000 requests per hour.
+              </li>
+              <li>
+                <strong>Requirements Delivery:</strong> Translated complex business ideas into BRDs, FRDs, and over 400 sprint backlogs for a 14-member cross-functional engineering team on an accelerated timeline.
+              </li>
+              <li>
+                <strong>Performance Optimization:</strong> Engineered in-memory caching mechanisms that slashed end-to-end latency from ~300ms to 50-100ms and reduced database overhead by 30%.
+              </li>
+              <li>
+                <strong>Database High Availability:</strong> Migrated database configurations from active-passive two-site settings to high-availability active-active replication, reducing failover downtime by over 50%.
+              </li>
+              <li>
+                <strong>Observability Migration:</strong> Led database telemetry conversion from enterprise software BTO to open-source Prometheus/Grafana, preserving full monitoring across 1,000+ servers while saving costs.
+              </li>
+            </ul>
+          </div>
+
+          <!-- OCBC Intern Details -->
+          <div class="exp-detail-content" id="exp-ocbc-intern">
+            <div class="exp-title-row">
+              <h3>Backend Developer Intern <span class="exp-company">@ Bank OCBC Indonesia</span></h3>
+              <span class="exp-date">Sep 2022 - May 2023</span>
+            </div>
+            
+            <ul class="exp-bullet-list">
+              <li>
+                <strong>Simulation Engine:</strong> Engineered a highly concurrent simulator for time deposits and savings products using Golang.
+              </li>
+              <li>
+                <strong>QA Automation Testing:</strong> Designed test strategies and wrote scripts for a food ordering platform, improving defect detection rates and identifying backend performance bottlenecks.
+              </li>
+              <li>
+                <strong>API Design:</strong> Contributed to early-stage REST API design and endpoint documentation using Swagger/OpenAPI schemas.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid Section -->
+  <section class="projects-section" id="projects">
+    <div class="section-container">
+      <h2 class="section-title"><span class="title-index">05.</span> Selected Projects</h2>
+      <p class="section-subtitle">
+        Highlighting my open-source applications, simulators, and data dashboards.
+      </p>
+
+      <!-- Category Filter Buttons -->
+      <div class="project-filters" id="project-filters">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="systems">Systems & Simulation</button>
+        <button class="filter-btn" data-filter="ml-data">ML & Data Science</button>
+        <button class="filter-btn" data-filter="apps">Web & Mobile Apps</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" id="projects-grid">
+        <!-- Project 1: BacktesterApp -->
+        <div class="project-card glass-panel" data-categories="systems apps">
+          <div class="project-card-header">
+            <i data-lucide="folder" class="folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/albertusro1/BacktesterApp" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <h3 class="project-card-title">BacktesterApp</h3>
+          <p class="project-card-desc">
+            A real-time backtesting dashboard built using Svelte, designed to simulate, analyze, and test quantitative trading algorithms against historical market feeds.
+          </p>
+          <div class="project-tech-list">
+            <span>Svelte</span>
+            <span>JavaScript</span>
+            <span>Trading Logic</span>
+          </div>
+        </div>
+
+        <!-- Project 2: TradePilot -->
+        <div class="project-card glass-panel" data-categories="systems">
+          <div class="project-card-header">
+            <i data-lucide="folder" class="folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/albertusro1/TradePilot" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <h3 class="project-card-title">TradePilot Dashboard</h3>
+          <p class="project-card-desc">
+            An API-driven backend orchestrator and user dashboard that processes scraping workers and triggers automated trading alerts for financial instruments.
+          </p>
+          <div class="project-tech-list">
+            <span>JavaScript</span>
+            <span>APIs</span>
+            <span>Scraping</span>
+          </div>
+        </div>
+
+        <!-- Project 3: Forecasting East Java Covid Cases -->
+        <div class="project-card glass-panel" data-categories="ml-data apps">
+          <div class="project-card-header">
+            <i data-lucide="folder" class="folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/albertusro1/Forecasting-East-Java-Covid-19-Cases-with-ARIMA-and-Streamlit" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <h3 class="project-card-title">ARIMA Forecasting WebApp</h3>
+          <p class="project-card-desc">
+            Interactive Streamlit dashboard running ARIMA time series models to forecast epidemiological trends, presenting real-time graphs and predictions.
+          </p>
+          <div class="project-tech-list">
+            <span>Streamlit</span>
+            <span>ARIMA</span>
+            <span>Jupyter Notebook</span>
+          </div>
+        </div>
+
+        <!-- Project 4: Stacked LSTM Hypertension -->
+        <div class="project-card glass-panel" data-categories="ml-data">
+          <div class="project-card-header">
+            <i data-lucide="folder" class="folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/albertusro1/hypertension-forecasting-using-stacked-lstm" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <h3 class="project-card-title">Hypertension LSTM Forecaster</h3>
+          <p class="project-card-desc">
+            Deep learning model repository implementing stacked Long Short-Term Memory (LSTM) recurrent networks to predict cardiovascular risk parameters.
+          </p>
+          <div class="project-tech-list">
+            <span>Python</span>
+            <span>LSTM</span>
+            <span>Deep Learning</span>
+          </div>
+        </div>
+
+        <!-- Project 5: Simple Food Delivery App -->
+        <div class="project-card glass-panel" data-categories="systems apps">
+          <div class="project-card-header">
+            <i data-lucide="folder" class="folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/albertusro1/Simple-Food-Delivery-App-using-Java" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <h3 class="project-card-title">Food Delivery Simulator</h3>
+          <p class="project-card-desc">
+            A concurrent order queuing simulator engineered in Java to test task scheduling, multithreading synchronization, and driver allocation strategies.
+          </p>
+          <div class="project-tech-list">
+            <span>Java</span>
+            <span>Concurrency</span>
+            <span>OOP</span>
+          </div>
+        </div>
+
+        <!-- Project 6: Spam Review Dashboard -->
+        <div class="project-card glass-panel" data-categories="ml-data apps">
+          <div class="project-card-header">
+            <i data-lucide="folder" class="folder-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/albertusro1/Spam-Review-Dashboard" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <h3 class="project-card-title">Spam Review Dashboard</h3>
+          <p class="project-card-desc">
+            Data visualization dashboard that clusters and identifies spam comments and fraudulent reviews, featuring statistical breakdown panels.
+          </p>
+          <div class="project-tech-list">
+            <span>Python</span>
+            <span>Data Viz</span>
+            <span>NLP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Terminal Section -->
+  <section class="terminal-section" id="terminal">
+    <div class="section-container">
+      <h2 class="section-title text-center"><span class="title-index">06.</span> Developer Command Line</h2>
+      <p class="section-subtitle text-center">
+        Type commands to query details directly from my database. Type <span class="term-highlight">help</span> to begin.
+      </p>
+
+      <div class="terminal-container glass-panel" id="terminal-container">
+        <div class="terminal-header">
+          <div class="header-buttons">
+            <span class="btn red"></span>
+            <span class="btn yellow"></span>
+            <span class="btn green"></span>
+          </div>
+          <div class="header-title">rowan@system-analyst-core:~</div>
+        </div>
+        <div class="terminal-body font-mono" id="terminal-body">
+          <div class="terminal-welcome">
+            <p>Welcome to Rowan System Core Terminal v2.1.0-Release</p>
+            <p>Type <span class="text-cyan">help</span> to see a list of available system commands.</p>
+            <p>&nbsp;</p>
+          </div>
+          <!-- Terminal logs and input prompt will be inserted here dynamically -->
+          
+          <div class="terminal-input-line">
+            <span class="terminal-prompt">rowan@sys-core:~$</span>
+            <input type="text" id="terminal-input" autocomplete="off" autofocus aria-label="Terminal command input">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Contact Section -->
+  <footer class="footer-section">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>Albertus Rowan</h3>
+          <p>System Analyst & Backend Engineer bridging banking specifications with low-latency event-driven microservices.</p>
+          <div class="social-icons">
+            <a href="mailto:albertusrowan@gmail.com" aria-label="Email"><i data-lucide="mail"></i></a>
+            <a href="https://linkedin.com/in/albertus-rowan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+            <a href="https://github.com/albertusro1" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i data-lucide="github"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-contact-info">
+          <h3>Contact Channels</h3>
+          <p><i data-lucide="mail"></i> albertusrowan@gmail.com</p>
+          <p><i data-lucide="phone"></i> +62 821-1400-3078</p>
+          <p><i data-lucide="map-pin"></i> Jakarta, Indonesia</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Albertus Rowan. All rights reserved.</p>
+        <p class="crafted-by">Engineered with modern Vanilla HTML/CSS/JS</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>
