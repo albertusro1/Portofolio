@@ -172,130 +172,140 @@
     </div>
   </section>
 
-  <!-- System Architecture Simulator Section -->
-  <section class="simulator-section" id="simulator">
+  <!-- Enterprise Program Explorer Section -->
+  <section class="explorer-section" id="simulator">
     <div class="section-container">
-      <h2 class="section-title text-center"><span class="title-index">02.</span> System Architecture Playground</h2>
+      <h2 class="section-title text-center"><span class="title-index">02.</span> Enterprise Program Explorer</h2>
       <p class="section-subtitle text-center">
-        Trigger live transactional scenarios to trace visual API routing, ISO 8583 switching, and cache parameters.
+        Explore the integration architectures, delivery milestones, and sequence flows of banking programs I managed.
       </p>
 
-      <div class="simulator-dashboard glass-panel">
-        <!-- Simulator Controls -->
-        <div class="sim-controls">
-          <h3 class="control-title">TPM Integration Scenarios</h3>
-          <div class="sim-buttons">
-            <button class="sim-btn active" data-flow="redemption" id="btn-flow-redemption">
-              <div class="sim-btn-icon"><i data-lucide="gift"></i></div>
-              <div class="sim-btn-text">
-                <span class="sim-btn-name">Loyalty Partner Redemption</span>
-                <span class="sim-btn-desc">App ➔ API Gateway ➔ Kafka Queue ➔ Partner API (20k/mo)</span>
-              </div>
-            </button>
-            
-            <button class="sim-btn" data-flow="qris" id="btn-flow-qris">
-              <div class="sim-btn-icon"><i data-lucide="qr-code"></i></div>
-              <div class="sim-btn-text">
-                <span class="sim-btn-name">QRIS Payment & ISO 8583</span>
-                <span class="sim-btn-desc">ISO 8583 message switch ➔ Redis ➔ General Ledger posting</span>
-              </div>
-            </button>
-            
-            <button class="sim-btn" data-flow="failover" id="btn-flow-failover">
-              <div class="sim-btn-icon"><i data-lucide="shield-alert"></i></div>
-              <div class="sim-btn-text">
-                <span class="sim-btn-name">OJK Data Residency Failover</span>
-                <span class="sim-btn-desc">Active-Active multi-site failover ➔ Downtime cut by 50%</span>
-              </div>
-            </button>
-          </div>
-          
-          <div class="sim-metrics glass-panel">
-            <div class="metric-item">
-              <span class="metric-label">Execution Latency</span>
-              <span class="metric-val" id="metric-latency">-- ms</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-label">Compliance Check</span>
-              <span class="metric-val" id="metric-status">Idle</span>
-            </div>
-            <div class="metric-item">
-              <span class="metric-label">Cache Reduction</span>
-              <span class="metric-val" id="metric-cache">--</span>
-            </div>
-          </div>
+      <div class="explorer-dashboard glass-panel">
+        <!-- Project Selector Tabs -->
+        <div class="explorer-tabs-container">
+          <button class="explorer-tab active" data-project="replatform" id="tab-proj-replatform">
+            <i data-lucide="globe"></i> Regional Loyalty Replatform
+          </button>
+          <button class="explorer-tab" data-project="access" id="tab-proj-access">
+            <i data-lucide="shield-check"></i> Access Management Tooling
+          </button>
+          <button class="explorer-tab" data-project="telemetry" id="tab-proj-telemetry">
+            <i data-lucide="activity"></i> HA Database & Telemetry
+          </button>
         </div>
 
-        <!-- Simulator Canvas Area -->
-        <div class="sim-visual-area">
-          <div class="diagram-canvas">
-            <svg class="diagram-connections" viewBox="0 0 800 450">
-              <defs>
-                <linearGradient id="gradient-cyan-purple" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#00F2FE" />
-                  <stop offset="100%" stop-color="#7F00FF" />
-                </linearGradient>
-                <filter id="glow-effect" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="6" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-              
-              <!-- Core Flow Connections -->
-              <path id="path-app-gw" d="M 120 225 L 260 225" class="connector-line" />
-              <path id="path-gw-srv" d="M 300 225 L 420 225" class="connector-line" />
-              <path id="path-srv-redis" d="M 440 205 L 440 120" class="connector-line" />
-              <path id="path-srv-kafka" d="M 460 225 L 580 225" class="connector-line" />
-              <path id="path-kafka-vendor" d="M 620 225 L 720 225" class="connector-line" />
-              <path id="path-srv-ledger" d="M 440 245 L 440 330" class="connector-line" />
-              <path id="path-alert-db" d="M 300 225 L 440 330" class="connector-line dash-line" style="display: none;" />
-
-              <!-- Flow Signal Pulses -->
-              <circle id="signal-pulse-1" r="5" fill="#00F2FE" class="pulse-signal" style="display: none;"></circle>
-              <circle id="signal-pulse-2" r="5" fill="#7F00FF" class="pulse-signal" style="display: none;"></circle>
-              <circle id="signal-pulse-3" r="5" fill="#10B981" class="pulse-signal" style="display: none;"></circle>
-            </svg>
-
-            <!-- Node Elements Overlay -->
-            <div class="node-wrapper" style="top: 225px; left: 100px;" data-node="app">
-              <div class="node-icon"><i data-lucide="smartphone"></i></div>
-              <span class="node-label">User App</span>
+        <div class="explorer-content-grid">
+          <!-- Left: Program Blueprint & Stats -->
+          <div class="program-blueprint-panel">
+            <h3 class="program-name" id="prog-name">Regional Reward System Replatform</h3>
+            <p class="program-description" id="prog-desc">
+              Migrating core reward services to a unified multi-country architecture (Singapore, Malaysia, Hong Kong, Indonesia) under strict OJK data-residency compliance.
+            </p>
+            
+            <div class="program-stats-grid">
+              <div class="prog-stat">
+                <span class="prog-stat-label">Delivery Timeline</span>
+                <span class="prog-stat-val" id="prog-timeline">Aug 2025 - Nov 2025</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-stat-label">Team Coordination</span>
+                <span class="prog-stat-val" id="prog-team">14 Engineers (4 FE, 6 BE, 4 QA)</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-stat-label">Key Governance</span>
+                <span class="prog-stat-val" id="prog-gov">10+ Vendors, 4 Country Reps</span>
+              </div>
+              <div class="prog-stat">
+                <span class="prog-stat-label">Compliance Code</span>
+                <span class="prog-stat-val" id="prog-compliance">OJK Data Residency</span>
+              </div>
             </div>
 
-            <div class="node-wrapper" style="top: 225px; left: 280px;" data-node="gateway">
-              <div class="node-icon"><i data-lucide="shield-check"></i></div>
-              <span class="node-label">API Gateway / Switch</span>
+            <div class="milestones-container">
+              <div class="milestone-header">
+                <span>Program Completion Roadmap</span>
+                <span id="roadmap-pct">100%</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="roadmap-bar" style="width: 100%;"></div>
+              </div>
             </div>
 
-            <div class="node-wrapper" style="top: 100px; left: 440px;" data-node="redis">
-              <div class="node-icon"><i data-lucide="layers"></i></div>
-              <span class="node-label">Redis Cache</span>
-            </div>
-
-            <div class="node-wrapper" style="top: 225px; left: 440px;" data-node="service">
-              <div class="node-icon text-cyan"><i data-lucide="server"></i></div>
-              <span class="node-label">Loyalty Service</span>
-            </div>
-
-            <div class="node-wrapper" style="top: 350px; left: 440px;" data-node="ledger">
-              <div class="node-icon"><i data-lucide="database"></i></div>
-              <span class="node-label">General Ledger (OJK)</span>
-            </div>
-
-            <div class="node-wrapper" style="top: 225px; left: 600px;" data-node="kafka">
-              <div class="node-icon"><i data-lucide="message-square"></i></div>
-              <span class="node-label">Kafka Broker</span>
-            </div>
-
-            <div class="node-wrapper" style="top: 225px; left: 740px;" data-node="vendor">
-              <div class="node-icon"><i data-lucide="external-link"></i></div>
-              <span class="node-label">Partner endpoints</span>
+            <div class="features-list-wrapper">
+              <h4 class="sub-section-title">Key Program Deliverables</h4>
+              <ul class="features-ul" id="features-list">
+                <li>Partner redemptions integration (TADA, Dinomarket, Blibli, Traveloka)</li>
+                <li>Digital wallet top-ups (OVO, IRIS Gopay/Midtrans)</li>
+                <li>Real-time QRIS point offsets & General Ledger automated postings</li>
+                <li>Secure OAuth 2.0 / JWT rate-limited API Gateway rules</li>
+              </ul>
             </div>
           </div>
-          
-          <!-- Mock Logger Output -->
-          <div class="sim-terminal-output font-mono" id="sim-terminal">
-            <div class="terminal-log-line text-slate">[20:11:48] SYSTEM: TPM simulation dashboard active. Click triggers.</div>
+
+          <!-- Right: Architecture Sequence Flow Map -->
+          <div class="architecture-flow-panel">
+            <div class="flow-header">
+              <h4>System Integration Topology & UML Flow</h4>
+              <button class="btn-play-flow" id="btn-play-flow">
+                <i data-lucide="play"></i> Play Sequence Flow
+              </button>
+            </div>
+            
+            <div class="diagram-canvas">
+              <svg class="diagram-connections" viewBox="0 0 800 320" id="explorer-svg">
+                <!-- SVG lines connecting nodes -->
+                <path id="path-1-2" d="M 120 160 L 240 160" class="connector-line" />
+                <path id="path-2-3" d="M 280 160 L 400 70" class="connector-line" />
+                <path id="path-2-4" d="M 280 160 L 400 250" class="connector-line" />
+                <path id="path-2-5" d="M 280 160 L 560 160" class="connector-line" />
+                <path id="path-5-6" d="M 600 160 L 720 160" class="connector-line" />
+
+                <!-- Pulse signals -->
+                <circle id="signal-pulse-1" r="5" fill="#00F2FE" class="pulse-signal" style="display: none;"></circle>
+                <circle id="signal-pulse-2" r="5" fill="#7F00FF" class="pulse-signal" style="display: none;"></circle>
+                <circle id="signal-pulse-3" r="5" fill="#10B981" class="pulse-signal" style="display: none;"></circle>
+              </svg>
+
+              <!-- Node Elements Overlays (Positions mapped to line endpoints) -->
+              <div class="node-wrapper" style="top: 160px; left: 100px;" data-node="node1">
+                <div class="node-icon" id="node1-icon"><i data-lucide="smartphone"></i></div>
+                <span class="node-label" id="node1-label">Client App</span>
+              </div>
+
+              <div class="node-wrapper" style="top: 160px; left: 260px;" data-node="node2">
+                <div class="node-icon" id="node2-icon"><i data-lucide="shield-check"></i></div>
+                <span class="node-label" id="node2-label">API Gateway</span>
+              </div>
+
+              <div class="node-wrapper" style="top: 70px; left: 420px;" data-node="node3">
+                <div class="node-icon" id="node3-icon"><i data-lucide="layers"></i></div>
+                <span class="node-label" id="node3-label">Redis Cache</span>
+              </div>
+
+              <div class="node-wrapper" style="top: 250px; left: 420px;" data-node="node4">
+                <div class="node-icon" id="node4-icon"><i data-lucide="database"></i></div>
+                <span class="node-label" id="node4-label">General Ledger</span>
+              </div>
+
+              <div class="node-wrapper" style="top: 160px; left: 580px;" data-node="node5">
+                <div class="node-icon" id="node5-icon"><i data-lucide="message-square"></i></div>
+                <span class="node-label" id="node5-label">Kafka Queue</span>
+              </div>
+
+              <div class="node-wrapper" style="top: 160px; left: 740px;" data-node="node6">
+                <div class="node-icon" id="node6-icon"><i data-lucide="external-link"></i></div>
+                <span class="node-label" id="node6-label">Partner APIs</span>
+              </div>
+            </div>
+
+            <!-- Sequence Step Info Box -->
+            <div class="sequence-step-box" id="sequence-step-box">
+              <div class="step-badge" id="step-badge">IDLE</div>
+              <div class="step-details">
+                <h5 id="step-title">Blueprints Explorer Active</h5>
+                <p id="step-desc">Click "Play Sequence Flow" to trace UML integrations, or click on nodes to review requirements.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

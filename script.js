@@ -192,229 +192,337 @@ document.addEventListener("DOMContentLoaded", () => {
   animateParticles();
 
   // ----------------------------------------------------
-  // 4. SYSTEM ARCHITECTURE PLAYGROUND (SIMULATOR)
+  // 4. ENTERPRISE PROGRAM EXPLORER
   // ----------------------------------------------------
-  const simButtons = document.querySelectorAll(".sim-btn");
-  const metricLatency = document.getElementById("metric-latency");
-  const metricStatus = document.getElementById("metric-status");
-  const metricCache = document.getElementById("metric-cache");
-  const simTerminal = document.getElementById("sim-terminal");
-  const diagramNodes = document.querySelectorAll(".node-wrapper");
-  const lines = document.querySelectorAll(".connector-line");
+  const explorerTabs = document.querySelectorAll(".explorer-tab");
+  const progName = document.getElementById("prog-name");
+  const progDesc = document.getElementById("prog-desc");
+  const progTimeline = document.getElementById("prog-timeline");
+  const progTeam = document.getElementById("prog-team");
+  const progGov = document.getElementById("prog-gov");
+  const progCompliance = document.getElementById("prog-compliance");
+  const roadmapPct = document.getElementById("roadmap-pct");
+  const roadmapBar = document.getElementById("roadmap-bar");
+  const featuresList = document.getElementById("features-list");
+  
+  const btnPlayFlow = document.getElementById("btn-play-flow");
+  const stepBadge = document.getElementById("step-badge");
+  const stepTitle = document.getElementById("step-title");
+  const stepDesc = document.getElementById("step-desc");
 
-  let simulationInterval = null;
+  // Dynamic nodes elements
+  const nodeWrappers = {
+    node1: document.querySelector('[data-node="node1"]'),
+    node2: document.querySelector('[data-node="node2"]'),
+    node3: document.querySelector('[data-node="node3"]'),
+    node4: document.querySelector('[data-node="node4"]'),
+    node5: document.querySelector('[data-node="node5"]'),
+    node6: document.querySelector('[data-node="node6"]')
+  };
 
-  function clearActiveStates() {
-    diagramNodes.forEach(node => {
-      node.classList.remove("active", "active-purple");
+  const nodeIcons = {
+    node1: document.getElementById("node1-icon"),
+    node2: document.getElementById("node2-icon"),
+    node3: document.getElementById("node3-icon"),
+    node4: document.getElementById("node4-icon"),
+    node5: document.getElementById("node5-icon"),
+    node6: document.getElementById("node6-icon")
+  };
+
+  const nodeLabels = {
+    node1: document.getElementById("node1-label"),
+    node2: document.getElementById("node2-label"),
+    node3: document.getElementById("node3-label"),
+    node4: document.getElementById("node4-label"),
+    node5: document.getElementById("node5-label"),
+    node6: document.getElementById("node6-label")
+  };
+
+  const connectorLines = {
+    line12: document.getElementById("path-1-2"),
+    line23: document.getElementById("path-2-3"),
+    line24: document.getElementById("path-2-4"),
+    line25: document.getElementById("path-2-5"),
+    line56: document.getElementById("path-5-6")
+  };
+
+  // Projects Program Database
+  const projectsData = {
+    replatform: {
+      name: "Regional Reward System Replatform",
+      desc: "Migrating core loyalty reward services to a unified multi-country architecture (Singapore, Malaysia, Hong Kong, Indonesia) under strict OJK data-residency compliance.",
+      timeline: "Aug 2025 - Nov 2025",
+      team: "14 Engineers (4 FE, 6 BE, 4 QA)",
+      gov: "10+ Vendors, 4 Country Reps",
+      compliance: "OJK Data Residency",
+      pct: "100%",
+      features: [
+        "Partner redemptions integration (TADA, Dinomarket, Blibli, Traveloka)",
+        "Digital wallet top-ups (OVO, IRIS Gopay/Midtrans)",
+        "Real-time QRIS point offsets & General Ledger automated postings",
+        "Secure OAuth 2.0 / JWT rate-limited API Gateway rules"
+      ],
+      nodes: [
+        { label: "Client App", icon: "smartphone" },
+        { label: "API Gateway", icon: "shield-check" },
+        { label: "Redis Cache", icon: "layers" },
+        { label: "Loyalty Core", icon: "server" },
+        { label: "Kafka Broker", icon: "message-square" },
+        { label: "Partner APIs", icon: "external-link" }
+      ],
+      steps: [
+        { title: "Client Initiates Redemption", desc: "User requests product redemption in the mobile loyalty app. Traffic: 20k/month." },
+        { title: "API Gateway Authentication", desc: "Gateway inspects regional OAuth 2.0 signatures and switches via ISO 8583-aligned paths." },
+        { title: "Core Validation & Cache Lookup", desc: "Loyalty Core queries Redis. Cache HIT cuts database read latency by 70%." },
+        { title: "Publish Event to Kafka", desc: "Core publishes point-deducted-pending event to topic 'redemption-events' for asynchronously buffering." },
+        { title: "Webhook Partner API Callback", desc: "Replatform worker makes secure REST call to Traveloka API. Traveloka logs booking and returns 200 OK." }
+      ],
+      paths: [
+        { line: "line12", pulse: "signal-pulse-1", duration: 800, delay: 0, node: "node1", color: "#00F2FE" },
+        { line: "line23", pulse: "signal-pulse-2", duration: 600, delay: 800, node: "node2", color: "#7F00FF" },
+        { line: "line24", pulse: "signal-pulse-1", duration: 600, delay: 1400, node: "node3", color: "#00F2FE" },
+        { line: "line25", pulse: "signal-pulse-1", duration: 800, delay: 2000, node: "node4", color: "#00F2FE" },
+        { line: "line56", pulse: "signal-pulse-1", duration: 800, delay: 2800, node: "node5", color: "#00F2FE" }
+      ]
+    },
+    access: {
+      name: "Internal Access Management Tooling",
+      desc: "Launched an automated compliance tool for managing, monitoring, and auto-expiring employee production access requests dynamically.",
+      timeline: "Mar 2024 - Jul 2024",
+      team: "5 Engineers (2 BE, 2 QA, 1 DevOps)",
+      gov: "SecOps & Infra Teams",
+      compliance: "Internal Audit Rules",
+      pct: "100%",
+      features: [
+        "Self-service access request dashboard",
+        "Company core router firewall integration",
+        "Profile-group network classification sync",
+        "Automated grant/revert access triggers"
+      ],
+      nodes: [
+        { label: "Employee App", icon: "user-check" },
+        { label: "Approvals Engine", icon: "check-square" },
+        { label: "Active Directory", icon: "key" },
+        { label: "Core Router", icon: "git-commit" },
+        { label: "Firewall Node", icon: "lock" },
+        { label: "Production Net", icon: "server" }
+      ],
+      steps: [
+        { title: "Employee Files Access Request", desc: "Request details target profile group and specific virtual environment." },
+        { title: "Approvals Engine State Evaluation", desc: "Manager reviews request. Auto-approves if standard role matches, otherwise triggers escalations." },
+        { title: "Active Directory Group Sync", desc: "Engine syncs Transient profile-group membership updates to AD clusters." },
+        { title: "Router ACL Re-generation", desc: "Access controller signals router to regenerate Access Control Lists (ACLs) dynamically." },
+        { title: "Production Net Unlocked", desc: "Firewall rules updated to allow client network block. Expiration timer scheduled." }
+      ],
+      paths: [
+        { line: "line12", pulse: "signal-pulse-1", duration: 800, delay: 0, node: "node1", color: "#00F2FE" },
+        { line: "line23", pulse: "signal-pulse-2", duration: 600, delay: 800, node: "node2", color: "#7F00FF" },
+        { line: "line24", pulse: "signal-pulse-1", duration: 600, delay: 1400, node: "node3", color: "#00F2FE" },
+        { line: "line25", pulse: "signal-pulse-1", duration: 800, delay: 2000, node: "node4", color: "#00F2FE" },
+        { line: "line56", pulse: "signal-pulse-1", duration: 800, delay: 2800, node: "node5", color: "#00F2FE" }
+      ]
+    },
+    telemetry: {
+      name: "HA Database & Telemetry Migration",
+      desc: "Migrated database clusters from traditional Active-Passive configurations to High Availability (HA) Active-Active. Consolidated observability via Prometheus/Grafana.",
+      timeline: "Jan 2025 - May 2025",
+      team: "8 Engineers (4 DevOps, 3 DBAs, 1 PM)",
+      gov: "1,000+ Enterprise Servers",
+      compliance: "OJK Resiliency Policy",
+      pct: "100%",
+      features: [
+        "1,000+ server Prometheus exporter standardized",
+        "Grafana observability & shift schedulers",
+        "Active-Active Database cross-site replication",
+        "Auto failover downtime cut from 30s to 12s (-50%)"
+      ],
+      nodes: [
+        { label: "1000+ Servers", icon: "cpu" },
+        { label: "Prometheus", icon: "search" },
+        { label: "Grafana Alert", icon: "bell" },
+        { label: "DB Active-Active", icon: "database" },
+        { label: "Standby replica", icon: "refresh-cw" },
+        { label: "Ops Telemetry", icon: "monitor" }
+      ],
+      steps: [
+        { title: "Telemetry Collection", desc: "Prometheus collects performance indicators from virtualised cores. Telemetry standardized in Grafana." },
+        { title: "Incident Triggered", desc: "Grafana triggers alert payload on primary database heartbeat loss." },
+        { title: "Failover Engine Activated", desc: "Replication delta synced. Stands up replica databases as master nodes." },
+        { title: "Traffic Switch Re-routing", desc: "Gateway changes DB connection pool pointers. Failover completes in 12s (slashed by 50%)." },
+        { title: "Observability Restored", desc: "Operations console dashboard reports system restoration. Write capacity fully operational." }
+      ],
+      paths: [
+        { line: "line12", pulse: "signal-pulse-1", duration: 800, delay: 0, node: "node1", color: "#00F2FE" },
+        { line: "line23", pulse: "signal-pulse-2", duration: 600, delay: 800, node: "node2", color: "#7F00FF" },
+        { line: "line24", pulse: "signal-pulse-1", duration: 600, delay: 1400, node: "node3", color: "#00F2FE" },
+        { line: "line25", pulse: "signal-pulse-1", duration: 800, delay: 2000, node: "node4", color: "#00F2FE" },
+        { line: "line56", pulse: "signal-pulse-1", duration: 800, delay: 2800, node: "node5", color: "#00F2FE" }
+      ]
+    }
+  };
+
+  let activeProject = "replatform";
+  let activeTimeouts = [];
+
+  function loadProjectBlueprint(projectId) {
+    activeProject = projectId;
+    const project = projectsData[projectId];
+    if (!project) return;
+
+    // Reset timeouts
+    activeTimeouts.forEach(t => clearTimeout(t));
+    activeTimeouts = [];
+
+    // Reset styles
+    resetFlowGraphics();
+
+    // Populate stats and descriptions
+    progName.textContent = project.name;
+    progDesc.textContent = project.desc;
+    progTimeline.textContent = project.timeline;
+    progTeam.textContent = project.team;
+    progGov.textContent = project.gov;
+    progCompliance.textContent = project.compliance;
+    roadmapPct.textContent = project.pct;
+    roadmapBar.style.width = project.pct;
+
+    // Populate key features list
+    featuresList.innerHTML = "";
+    project.features.forEach(feat => {
+      const li = document.createElement("li");
+      li.textContent = feat;
+      featuresList.appendChild(li);
     });
-    lines.forEach(line => {
-      line.classList.remove("active", "active-purple");
-      line.style.display = "block";
+
+    // Populate nodes labels & icons
+    project.nodes.forEach((node, index) => {
+      const nodeKey = `node${index + 1}`;
+      nodeLabels[nodeKey].textContent = node.label;
+      nodeIcons[nodeKey].innerHTML = `<i data-lucide="${node.icon}"></i>`;
     });
-    
+
+    // Re-trigger Lucide icons in updated HTML nodes
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Reset step box
+    stepBadge.textContent = "IDLE";
+    stepBadge.classList.remove("active");
+    stepTitle.textContent = "Blueprints Explorer Active";
+    stepDesc.textContent = "Click 'Play Sequence Flow' to trace UML integrations, or click on nodes to review requirements.";
+  }
+
+  function resetFlowGraphics() {
+    Object.values(nodeWrappers).forEach(n => n.classList.remove("active", "active-purple"));
+    Object.values(connectorLines).forEach(l => {
+      l.classList.remove("active", "active-purple");
+    });
     const signals = document.querySelectorAll(".pulse-signal");
     signals.forEach(sig => {
       sig.style.display = "none";
       sig.style.animation = "none";
     });
-
-    document.getElementById("path-alert-db").style.display = "none";
-    document.getElementById("path-srv-ledger").style.display = "block";
-
-    if (simulationInterval) {
-      clearInterval(simulationInterval);
-    }
   }
 
-  function logSim(text, type = "slate") {
-    const time = new Date().toLocaleTimeString();
-    const logLine = document.createElement("div");
-    logLine.className = `terminal-log-line text-${type}-log`;
-    logLine.innerHTML = `[${time}] ${text}`;
-    simTerminal.appendChild(logLine);
-    simTerminal.scrollTop = simTerminal.scrollHeight;
-  }
+  function playSequenceFlow() {
+    resetFlowGraphics();
+    const project = projectsData[activeProject];
+    if (!project) return;
 
-  function animateSignal(signalId, pathId, duration, delay = 0, color = "#00F2FE") {
-    const signal = document.getElementById(signalId);
-    const path = document.getElementById(pathId);
-    
-    if (!signal || !path) return;
+    stepBadge.classList.add("active");
 
-    setTimeout(() => {
-      signal.setAttribute("fill", color);
-      signal.style.display = "block";
-      signal.style.offsetPath = `path('${path.getAttribute("d")}')`;
-      signal.style.animation = `move-signal ${duration}ms forwards linear`;
-    }, delay);
-  }
-
-  function runSimulation(flowType) {
-    clearActiveStates();
-    simTerminal.innerHTML = "";
-    
-    logSim(`SYSTEM: Initiating technical program scenario: ${flowType.toUpperCase()}`, "slate");
-    metricStatus.textContent = "Checking...";
-    metricStatus.style.color = "var(--primary-color)";
-    metricLatency.textContent = "...";
-    metricCache.textContent = "...";
-
-    if (flowType === "redemption") {
-      const activeNodes = ["app", "gateway", "service", "kafka", "vendor"];
-      
-      logSim("CLIENT: Mobile Client sends partner redemption request. Vol: 20k/month limit check", "slate");
-      document.querySelector('[data-node="app"]').classList.add("active");
-      document.getElementById("path-app-gw").classList.add("active");
-      animateSignal("signal-pulse-1", "path-app-gw", 800, 0);
-
-      setTimeout(() => {
-        document.querySelector('[data-node="gateway"]').classList.add("active");
-        logSim("GATEWAY: Authenticating regional OAuth 2.0 API gateway headers. Validating token integrity", "cyan");
-        document.getElementById("path-gw-srv").classList.add("active");
-        animateSignal("signal-pulse-1", "path-gw-srv", 800, 0);
-      }, 800);
-
-      setTimeout(() => {
-        document.querySelector('[data-node="service"]').classList.add("active");
-        logSim("SERVICE: Loyalty service evaluating user account parameters & points offsets", "cyan");
-        document.getElementById("path-srv-redis").classList.add("active-purple");
-        document.querySelector('[data-node="redis"]').classList.add("active-purple");
-        animateSignal("signal-pulse-2", "path-srv-redis", 600, 0, "#7F00FF");
-      }, 1600);
-
-      setTimeout(() => {
-        logSim("CACHE: Redis Cache MISS. Loading account parameters from PostgreSQL replication pool", "purple");
-        document.getElementById("path-srv-ledger").classList.add("active");
-        document.querySelector('[data-node="ledger"]').classList.add("active");
-        animateSignal("signal-pulse-1", "path-srv-ledger", 600, 0);
-      }, 2200);
-
-      setTimeout(() => {
-        logSim("DB: PostgreSQL read replicate returns user status: ACTIVE. Bal: 45,000 pts", "emerald");
-        logSim("SERVICE: Publishing point-deduct-pending record to event stream", "cyan");
-        document.getElementById("path-srv-kafka").classList.add("active");
-        document.querySelector('[data-node="kafka"]').classList.add("active");
-        animateSignal("signal-pulse-1", "path-srv-kafka", 800, 0);
-      }, 2800);
-
-      setTimeout(() => {
-        logSim("BROKER: Kafka broker routing topic 'redemption-events' to consumer worker", "purple");
-        document.getElementById("path-kafka-vendor").classList.add("active");
-        document.querySelector('[data-node="vendor"]').classList.add("active");
-        animateSignal("signal-pulse-1", "path-kafka-vendor", 800, 0);
-      }, 3600);
-
-      setTimeout(() => {
-        logSim("EXTERNAL: Calling partner Traveloka API endpoint via secure TLS Webhook...", "amber");
-        logSim("EXTERNAL: Traveloka API returns 200 OK. Redemption item booked. ID: TRV-890", "emerald");
-      }, 4400);
-
-      setTimeout(() => {
-        logSim("SUCCESS: Redemption complete! Points updated. Ledger logs posted.", "emerald");
-        metricStatus.textContent = "OJK Compliant";
-        metricStatus.style.color = "var(--emerald-color)";
-        metricLatency.textContent = "65 ms";
-        metricCache.textContent = "Miss (Wrote DB)";
-      }, 5000);
-
-    } else if (flowType === "qris") {
-      // QRIS Payment with ISO 8583-aligned switching flow (Cache Hit)
-      
-      logSim("CLIENT: User triggers QRIS payment in app, offsetting purchase with loyalty points", "slate");
-      document.querySelector('[data-node="app"]').classList.add("active");
-      document.getElementById("path-app-gw").classList.add("active");
-      animateSignal("signal-pulse-1", "path-app-gw", 800, 0);
-
-      setTimeout(() => {
-        document.querySelector('[data-node="gateway"]').classList.add("active");
-        logSim("SWITCH: Parsing ISO 8583 card message payload. Extracting transaction fields", "cyan");
-        document.getElementById("path-gw-srv").classList.add("active");
-        animateSignal("signal-pulse-1", "path-gw-srv", 800, 0);
-      }, 800);
-
-      setTimeout(() => {
-        document.querySelector('[data-node="service"]').classList.add("active");
-        logSim("SERVICE: Fetching user loyalty multipliers and caching headers...", "cyan");
-        document.getElementById("path-srv-redis").classList.add("active-purple");
-        document.querySelector('[data-node="redis"]').classList.add("active-purple");
-        animateSignal("signal-pulse-2", "path-srv-redis", 600, 0, "#7F00FF");
-      }, 1600);
-
-      setTimeout(() => {
-        logSim("CACHE: Redis Cache HIT! Latency reduced by 70%. Loaded profile details in 2ms.", "emerald");
-        logSim("SERVICE: Points offset computed. Requesting ledger settlement post.", "cyan");
-        document.getElementById("path-srv-ledger").classList.add("active");
-        document.querySelector('[data-node="ledger"]').classList.add("active");
-        animateSignal("signal-pulse-1", "path-srv-ledger", 600, 0);
-      }, 2200);
-
-      setTimeout(() => {
-        logSim("DB: Crediting general ledger entry. Posting automatic financial settlement record.", "emerald");
-      }, 2800);
-
-      setTimeout(() => {
-        logSim("SUCCESS: ISO 8583 response packet code 00 (Approved) returned to switch.", "emerald");
-        metricStatus.textContent = "Approved (00)";
-        metricStatus.style.color = "var(--emerald-color)";
-        metricLatency.textContent = "8 ms";
-        metricCache.textContent = "70% Overhead Cut";
-      }, 3400);
-
-    } else if (flowType === "failover") {
-      // OJK Data Residency active-active failover
-      
-      logSim("MONITOR: Prometheus alarms - Primary master database site disconnected (Network partition)", "warn");
-      document.querySelector('[data-node="ledger"]').classList.add("active-purple");
-      document.getElementById("path-srv-ledger").classList.add("active-purple");
-      
-      setTimeout(() => {
-        logSim("COMPLIANCE: OJK data-residency compliance trigger active. Commencing auto failover.", "warn");
+    // Sequence trigger timelines
+    project.paths.forEach((pathObj, stepIndex) => {
+      // Step timeout
+      const t1 = setTimeout(() => {
+        // Highlight active line
+        const isPurple = pathObj.color === "#7F00FF";
+        const cssClass = isPurple ? "active-purple" : "active";
+        connectorLines[pathObj.line].classList.add(cssClass);
         
-        document.getElementById("path-srv-ledger").style.display = "none";
-        document.getElementById("path-alert-db").style.display = "block";
-        document.getElementById("path-alert-db").classList.add("active");
-        
-        document.querySelector('[data-node="gateway"]').classList.add("active-purple");
-        animateSignal("signal-pulse-2", "path-alert-db", 1000, 0, "#7F00FF");
-      }, 1000);
+        // Highlight active node
+        const nodeWrapperCss = isPurple ? "active-purple" : "active";
+        nodeWrappers[pathObj.node].classList.add(nodeWrapperCss);
 
-      setTimeout(() => {
-        logSim("FAILOVER: Redirecting transaction traffic to Secondary standby replica database site...", "purple");
-        logSim("FAILOVER: Secondary database site promoted to Primary Master.", "purple");
-      }, 2000);
+        // Update step box details
+        stepBadge.textContent = `STEP ${stepIndex + 1}`;
+        stepTitle.textContent = project.steps[stepIndex].title;
+        stepDesc.textContent = project.steps[stepIndex].desc;
 
-      setTimeout(() => {
-        logSim("SYNC: Replication logs synced. Active-Active DB integrity verified.", "emerald");
-        document.querySelector('[data-node="ledger"]').classList.remove("active-purple");
-        document.querySelector('[data-node="ledger"]').classList.add("active");
-        document.getElementById("path-alert-db").classList.remove("active-purple");
-        document.getElementById("path-alert-db").classList.add("active");
-        logSim("SYSTEM: Database failover recovery successful! Write capacity fully restored.", "emerald");
-      }, 3000);
+        // Animate pulse
+        const signal = document.getElementById(pathObj.pulse);
+        const path = connectorLines[pathObj.line];
+        if (signal && path) {
+          signal.setAttribute("fill", pathObj.color);
+          signal.style.display = "block";
+          signal.style.offsetPath = `path('${path.getAttribute("d")}')`;
+          signal.style.animation = `move-signal ${pathObj.duration}ms forwards linear`;
+        }
+      }, pathObj.delay);
 
-      setTimeout(() => {
-        metricStatus.textContent = "HA Active";
-        metricStatus.style.color = "var(--emerald-color)";
-        metricLatency.textContent = "12 seconds";
-        metricCache.textContent = "Failover -50% DT";
-      }, 3600);
-    }
+      activeTimeouts.push(t1);
+    });
+
+    // Final Success Callback step timeout
+    const finalDelay = project.paths[project.paths.length - 1].delay + 1000;
+    const tFinal = setTimeout(() => {
+      // Highlight final node
+      nodeWrappers["node6"].classList.add("active");
+      stepBadge.textContent = "SUCCESS";
+      stepTitle.textContent = "Sequence Completed";
+      stepDesc.textContent = "All integration checkpoints verified. Target system transactions committed.";
+    }, finalDelay);
+    
+    activeTimeouts.push(tFinal);
   }
 
-  // Bind simulation buttons
-  simButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      simButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      
-      const flow = btn.getAttribute("data-flow");
-      runSimulation(flow);
+  // Bind tabs clicks
+  explorerTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      explorerTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const projectId = tab.getAttribute("data-project");
+      loadProjectBlueprint(projectId);
     });
   });
 
-  // Start default simulation on load
-  runSimulation("redemption");
+  // Bind play button
+  btnPlayFlow.addEventListener("click", playSequenceFlow);
+
+  // Bind Node clicks to show specific requirements
+  Object.keys(nodeWrappers).forEach((nodeKey, index) => {
+    nodeWrappers[nodeKey].addEventListener("click", () => {
+      const project = projectsData[activeProject];
+      if (!project) return;
+
+      const nodeData = project.nodes[index];
+      let reqText = "";
+      
+      // Customize requirements text dynamically for a realistic spec view
+      if (nodeKey === "node1") {
+        reqText = `Client Interface requirements: Strict rate-limiting on user retries, encrypted offline SQLite telemetry storage sync.`;
+      } else if (nodeKey === "node2") {
+        reqText = `Gateway specs: OAuth 2.0 JWT parsing, CORS validation policy, network router ACL translation.`;
+      } else if (nodeKey === "node3") {
+        reqText = `Caching policy: Redis clustered database. Target TTL: 12 hours. Expected hit latency: <3ms.`;
+      } else if (nodeKey === "node4") {
+        reqText = `Ledger compliance: ACID transactional safety, double-entry general ledger schemas, OJK compliance sync.`;
+      } else if (nodeKey === "node5") {
+        reqText = `Queue broker: Kafka consumer configuration. Topic partition: 3 partitions for regional replication.`;
+      } else if (nodeKey === "node6") {
+        reqText = `Partner connectivity: HTTPS TLS 1.3 webhook endpoints, mutual authentication keys, switching fallbacks.`;
+      }
+
+      stepBadge.classList.add("active");
+      stepBadge.textContent = "SPEC";
+      stepTitle.textContent = `${nodeData.label} Technical Constraint`;
+      stepDesc.textContent = reqText;
+    });
+  });
+
+  // Load default blueprint
+  loadProjectBlueprint("replatform");
 
   // ----------------------------------------------------
   // 5. EXPERIENCE TIMELINE TABS
