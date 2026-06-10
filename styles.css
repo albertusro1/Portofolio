@@ -576,17 +576,29 @@ body:not(.light-mode) .moon-icon {
   display: flex;
   align-items: center;
   gap: 16px;
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-color);
-  padding: 12px 18px;
-  border-radius: 8px;
+  padding: 14px 20px;
+  border-radius: 6px;
   transition: all var(--transition-speed) ease;
+}
+
+.highlight-item:nth-child(1) {
+  border-left: 3px solid var(--primary-color);
+}
+
+.highlight-item:nth-child(2) {
+  border-left: 3px solid var(--secondary-color);
+}
+
+.highlight-item:nth-child(3) {
+  border-left: 3px solid var(--emerald-color);
 }
 
 .highlight-item:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-color-hover);
-  transform: translateX(6px);
+  transform: translateX(8px);
 }
 
 .highlight-icon {
@@ -616,8 +628,9 @@ body:not(.light-mode) .moon-icon {
 
 .profile-photo-wrapper {
   position: relative;
-  width: 70%;
-  height: 90%;
+  width: 68%;
+  height: 95%;
+  margin-left: auto; /* Aligns photo to the right */
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -635,7 +648,7 @@ body:not(.light-mode) .moon-icon {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 22%; /* Crops to focus perfectly on the face/chest, keeping waterfall in background */
+  object-position: 53% 20%; /* Centers Rowan perfectly in the cropped frame */
   transition: transform 0.5s ease;
 }
 
@@ -645,10 +658,10 @@ body:not(.light-mode) .moon-icon {
 
 .visual-terminal {
   position: absolute;
-  bottom: 20px;
-  right: 0;
-  width: 65%;
-  height: 270px;
+  bottom: 30px;
+  left: 0; /* Aligns terminal to the left, overlapping the photo's left background area */
+  width: 60%;
+  height: 260px;
   z-index: 2;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
   border-radius: 12px;
@@ -719,17 +732,18 @@ body:not(.light-mode) .moon-icon {
     width: 100%;
     max-width: 380px;
     height: 420px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .visual-terminal {
     position: relative;
     bottom: auto;
-    right: auto;
+    left: auto;
     width: 100%;
     max-width: 420px;
     height: 250px;
-    margin-top: -60px; /* Overlap terminal on top of the image */
-    margin-left: 40px;
+    margin-top: -60px; /* Overlap terminal vertically on mobile */
   }
 }
 
