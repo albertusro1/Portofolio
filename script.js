@@ -420,4 +420,33 @@ Available Commands:
       behavior: "smooth"
     });
   });
+
+  // ----------------------------------------------------
+  // 9. SCROLL REVEAL (INTERSECTION OBSERVER)
+  // ----------------------------------------------------
+  const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .stagger-container");
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Stagger container child items
+        if (entry.target.classList.contains("stagger-container")) {
+          const items = entry.target.querySelectorAll(".stagger-item");
+          items.forEach((item, idx) => {
+            item.style.transitionDelay = `${idx * 0.12}s`;
+            item.classList.add("revealed");
+          });
+        }
+        
+        // Single elements
+        entry.target.classList.add("revealed");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.05, // Trigger early when 5% of element is in view
+    rootMargin: "0px 0px -40px 0px"
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
 });
