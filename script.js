@@ -403,4 +403,21 @@ Available Commands:
       }
     });
   });
+
+  // Scroll to Top Button functionality
+  const scrollToTopBtn = document.getElementById("scroll-to-top");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 400) {
+      scrollToTopBtn.classList.add("show");
+    } else {
+      scrollToTopBtn.classList.remove("show");
+    }
+  });
+
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
 });
