@@ -1,4 +1,4 @@
-// ROWAN'S PORTFOLIO - CORE JAVASCRIPT ENGINE
+// ROWAN'S PORTFOLIO - CORE JAVASCRIPT ENGINE (TPM & SYSTEMS ALIGNED)
 
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize Lucide Icons
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let height = (canvas.height = window.innerHeight);
 
   const particles = [];
-  const particleCount = Math.min(80, Math.floor((width * height) / 18000)); // Responsive count
+  const particleCount = Math.min(80, Math.floor((width * height) / 18000));
   const connectionDistance = 120;
   const mouse = { x: null, y: null, radius: 150 };
 
@@ -97,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     update() {
-      // Repel from mouse
       if (mouse.x !== null) {
         const dx = this.x - mouse.x;
         const dy = this.y - mouse.y;
@@ -110,21 +109,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Limit speed
       const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
       if (speed > 1.5) {
         this.vx = (this.vx / speed) * 1.5;
         this.vy = (this.vy / speed) * 1.5;
       }
 
-      // Friction
       this.vx *= 0.98;
       this.vy *= 0.98;
 
       this.x += this.vx;
       this.y += this.vy;
 
-      // Bounce/wrap borders
       if (this.x < 0) { this.x = 0; this.vx *= -1; }
       if (this.x > width) { this.x = width; this.vx *= -1; }
       if (this.y < 0) { this.y = 0; this.vy *= -1; }
@@ -174,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Draw connection to mouse
       if (mouse.x !== null) {
         const dx = p1.x - mouse.x;
         const dy = p1.y - mouse.y;
@@ -218,14 +213,12 @@ document.addEventListener("DOMContentLoaded", () => {
       line.style.display = "block";
     });
     
-    // Hide signals
     const signals = document.querySelectorAll(".pulse-signal");
     signals.forEach(sig => {
       sig.style.display = "none";
       sig.style.animation = "none";
     });
 
-    // Reset lines
     document.getElementById("path-alert-db").style.display = "none";
     document.getElementById("path-srv-ledger").style.display = "block";
 
@@ -259,58 +252,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function runSimulation(flowType) {
     clearActiveStates();
-    simTerminal.innerHTML = ""; // Clear logs
+    simTerminal.innerHTML = "";
     
-    logSim(`SYSTEM: Initiating flow simulation: ${flowType.toUpperCase()}`, "slate");
-    metricStatus.textContent = "Processing";
+    logSim(`SYSTEM: Initiating technical program scenario: ${flowType.toUpperCase()}`, "slate");
+    metricStatus.textContent = "Checking...";
     metricStatus.style.color = "var(--primary-color)";
     metricLatency.textContent = "...";
     metricCache.textContent = "...";
 
     if (flowType === "redemption") {
-      // Step-by-step UI updates representing Points Redemption Flow
-      
-      // Active Nodes
       const activeNodes = ["app", "gateway", "service", "kafka", "vendor"];
       
-      // Step 1: App to Gateway
-      logSim("CLIENT: User requests reward partner list (Traveloka) in loyalty app", "slate");
+      logSim("CLIENT: Mobile Client sends partner redemption request. Vol: 20k/month limit check", "slate");
       document.querySelector('[data-node="app"]').classList.add("active");
       document.getElementById("path-app-gw").classList.add("active");
       animateSignal("signal-pulse-1", "path-app-gw", 800, 0);
 
       setTimeout(() => {
         document.querySelector('[data-node="gateway"]').classList.add("active");
-        logSim("GATEWAY: Authenticating request via OAuth 2.0 / JWT validation. Rate-limits: OK", "cyan");
+        logSim("GATEWAY: Authenticating regional OAuth 2.0 API gateway headers. Validating token integrity", "cyan");
         document.getElementById("path-gw-srv").classList.add("active");
         animateSignal("signal-pulse-1", "path-gw-srv", 800, 0);
       }, 800);
 
       setTimeout(() => {
         document.querySelector('[data-node="service"]').classList.add("active");
-        logSim("SERVICE: Loyalty core logic validating user points balance...", "cyan");
+        logSim("SERVICE: Loyalty service evaluating user account parameters & points offsets", "cyan");
         document.getElementById("path-srv-redis").classList.add("active-purple");
         document.querySelector('[data-node="redis"]').classList.add("active-purple");
         animateSignal("signal-pulse-2", "path-srv-redis", 600, 0, "#7F00FF");
       }, 1600);
 
       setTimeout(() => {
-        logSim("CACHE: Redis Cache MISS. Querying relational DB (PostgreSQL HA)", "purple");
+        logSim("CACHE: Redis Cache MISS. Loading account parameters from PostgreSQL replication pool", "purple");
         document.getElementById("path-srv-ledger").classList.add("active");
         document.querySelector('[data-node="ledger"]').classList.add("active");
         animateSignal("signal-pulse-1", "path-srv-ledger", 600, 0);
       }, 2200);
 
       setTimeout(() => {
-        logSim("DB: Read replica balance validation success (balance: 34,200 points)", "emerald");
-        logSim("SERVICE: Publishing point-deduct-pending message to event stream", "cyan");
+        logSim("DB: PostgreSQL read replicate returns user status: ACTIVE. Bal: 45,000 pts", "emerald");
+        logSim("SERVICE: Publishing point-deduct-pending record to event stream", "cyan");
         document.getElementById("path-srv-kafka").classList.add("active");
         document.querySelector('[data-node="kafka"]').classList.add("active");
         animateSignal("signal-pulse-1", "path-srv-kafka", 800, 0);
       }, 2800);
 
       setTimeout(() => {
-        logSim("QUEUE: Kafka broker routing topic 'redemption-events' to consumer worker", "purple");
+        logSim("BROKER: Kafka broker routing topic 'redemption-events' to consumer worker", "purple");
         document.getElementById("path-kafka-vendor").classList.add("active");
         document.querySelector('[data-node="vendor"]').classList.add("active");
         animateSignal("signal-pulse-1", "path-kafka-vendor", 800, 0);
@@ -318,69 +307,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         logSim("EXTERNAL: Calling partner Traveloka API endpoint via secure TLS Webhook...", "amber");
-        logSim("EXTERNAL: Booking successful. Partner responds with code 200 OK. Transaction ID: TRV-890", "emerald");
+        logSim("EXTERNAL: Traveloka API returns 200 OK. Redemption item booked. ID: TRV-890", "emerald");
       }, 4400);
 
       setTimeout(() => {
-        logSim("SUCCESS: Redemption complete! Point offset logged in financial general ledger.", "emerald");
-        metricStatus.textContent = "Success";
+        logSim("SUCCESS: Redemption complete! Points updated. Ledger logs posted.", "emerald");
+        metricStatus.textContent = "OJK Compliant";
         metricStatus.style.color = "var(--emerald-color)";
-        metricLatency.textContent = "65 ms (Cache Warm)";
-        metricCache.textContent = "Miss (Wrote Core)";
+        metricLatency.textContent = "65 ms";
+        metricCache.textContent = "Miss (Wrote DB)";
       }, 5000);
 
     } else if (flowType === "qris") {
-      // QRIS Payment Point Offset Flow (Cache Hit scenario)
+      // QRIS Payment with ISO 8583-aligned switching flow (Cache Hit)
       
+      logSim("CLIENT: User triggers QRIS payment in app, offsetting purchase with loyalty points", "slate");
       document.querySelector('[data-node="app"]').classList.add("active");
       document.getElementById("path-app-gw").classList.add("active");
       animateSignal("signal-pulse-1", "path-app-gw", 800, 0);
 
       setTimeout(() => {
         document.querySelector('[data-node="gateway"]').classList.add("active");
-        logSim("GATEWAY: Routing mobile QRIS transaction to Settlement processor", "cyan");
+        logSim("SWITCH: Parsing ISO 8583 card message payload. Extracting transaction fields", "cyan");
         document.getElementById("path-gw-srv").classList.add("active");
         animateSignal("signal-pulse-1", "path-gw-srv", 800, 0);
       }, 800);
 
       setTimeout(() => {
         document.querySelector('[data-node="service"]').classList.add("active");
-        logSim("SERVICE: Fetching user profile classifications and loyalty points multipliers...", "cyan");
+        logSim("SERVICE: Fetching user loyalty multipliers and caching headers...", "cyan");
         document.getElementById("path-srv-redis").classList.add("active-purple");
         document.querySelector('[data-node="redis"]').classList.add("active-purple");
         animateSignal("signal-pulse-2", "path-srv-redis", 600, 0, "#7F00FF");
       }, 1600);
 
       setTimeout(() => {
-        logSim("CACHE: Redis Cache HIT! Loaded profile details in 2ms. Skipping database query.", "emerald");
-        logSim("SERVICE: Point offsetting formula calculated. Initiating General Ledger posting schema.", "cyan");
+        logSim("CACHE: Redis Cache HIT! Latency reduced by 70%. Loaded profile details in 2ms.", "emerald");
+        logSim("SERVICE: Points offset computed. Requesting ledger settlement post.", "cyan");
         document.getElementById("path-srv-ledger").classList.add("active");
         document.querySelector('[data-node="ledger"]').classList.add("active");
         animateSignal("signal-pulse-1", "path-srv-ledger", 600, 0);
       }, 2200);
 
       setTimeout(() => {
-        logSim("DB: Posting offset credit entry to GL ledger. Auto-settlement triggered.", "emerald");
+        logSim("DB: Crediting general ledger entry. Posting automatic financial settlement record.", "emerald");
       }, 2800);
 
       setTimeout(() => {
-        logSim("SUCCESS: Point offset offsetted securely! Mobile client notified.", "emerald");
-        metricStatus.textContent = "Success";
+        logSim("SUCCESS: ISO 8583 response packet code 00 (Approved) returned to switch.", "emerald");
+        metricStatus.textContent = "Approved (00)";
         metricStatus.style.color = "var(--emerald-color)";
-        metricLatency.textContent = "8 ms (Realtime)";
-        metricCache.textContent = "HIT (Redis)";
+        metricLatency.textContent = "8 ms";
+        metricCache.textContent = "70% Overhead Cut";
       }, 3400);
 
     } else if (flowType === "failover") {
-      // High-Availability Database Failover Scenario
+      // OJK Data Residency active-active failover
       
-      logSim("MONITOR: Prometheus detects master database site failure (heartbeat packet loss)", "warn");
+      logSim("MONITOR: Prometheus alarms - Primary master database site disconnected (Network partition)", "warn");
       document.querySelector('[data-node="ledger"]').classList.add("active-purple");
       document.getElementById("path-srv-ledger").classList.add("active-purple");
       
       setTimeout(() => {
-        logSim("ALERT: Telemetry triggers Webhook alert to Monitoring team / Auto-failover controller", "warn");
-        // Hide normal database line and draw dynamic alternative routing line
+        logSim("COMPLIANCE: OJK data-residency compliance trigger active. Commencing auto failover.", "warn");
+        
         document.getElementById("path-srv-ledger").style.display = "none";
         document.getElementById("path-alert-db").style.display = "block";
         document.getElementById("path-alert-db").classList.add("active");
@@ -390,24 +380,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1000);
 
       setTimeout(() => {
-        logSim("FAILOVER: Unbinding router from primary site ➔ Binding client profile to Standby secondary database site", "purple");
-        logSim("FAILOVER: Secondary site promoted to Primary Master. Syncing replication delta logs...", "purple");
+        logSim("FAILOVER: Redirecting transaction traffic to Secondary standby replica database site...", "purple");
+        logSim("FAILOVER: Secondary database site promoted to Primary Master.", "purple");
       }, 2000);
 
       setTimeout(() => {
-        logSim("SYNC: Replication integrity verified. Health checks passed.", "emerald");
+        logSim("SYNC: Replication logs synced. Active-Active DB integrity verified.", "emerald");
         document.querySelector('[data-node="ledger"]').classList.remove("active-purple");
         document.querySelector('[data-node="ledger"]').classList.add("active");
         document.getElementById("path-alert-db").classList.remove("active-purple");
         document.getElementById("path-alert-db").classList.add("active");
-        logSim("SYSTEM: Database failover recovery successful! Write capacity restored.", "emerald");
+        logSim("SYSTEM: Database failover recovery successful! Write capacity fully restored.", "emerald");
       }, 3000);
 
       setTimeout(() => {
-        metricStatus.textContent = "Failover Ok";
+        metricStatus.textContent = "HA Active";
         metricStatus.style.color = "var(--emerald-color)";
-        metricLatency.textContent = "12 seconds (Slashed 60%)";
-        metricCache.textContent = "Bypassed (Auto HA)";
+        metricLatency.textContent = "12 seconds";
+        metricCache.textContent = "Failover -50% DT";
       }, 3600);
     }
   }
@@ -415,7 +405,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Bind simulation buttons
   simButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      // Toggle button states
       simButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       
@@ -435,11 +424,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tabButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      // Switch active tab button
       tabButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
-      // Switch active content
       const expId = btn.getAttribute("data-exp");
       expDetails.forEach(detail => {
         detail.classList.remove("active");
@@ -458,7 +445,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      // Toggle active button
       filterButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
@@ -469,7 +455,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (filterValue === "all" || categories.includes(filterValue)) {
           card.style.display = "flex";
-          // Small delay for fade transition
           setTimeout(() => {
             card.style.opacity = "1";
             card.style.transform = "scale(1)";
@@ -477,7 +462,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           card.style.opacity = "0";
           card.style.transform = "scale(0.9)";
-          // Wait for transition before hiding
           setTimeout(() => {
             card.style.display = "none";
           }, 300);
@@ -493,76 +477,75 @@ document.addEventListener("DOMContentLoaded", () => {
   const terminalInput = document.getElementById("terminal-input");
   const terminalContainer = document.getElementById("terminal-container");
 
-  // Command database
   const commands = {
     help: () => `
 Available Commands:
-  <span class="term-highlight">about</span>       - Print summary about Rowan
-  <span class="term-highlight">skills</span>      - Print technical skills and stacks
-  <span class="term-highlight">experience</span>  - List professional experience
+  <span class="term-highlight">about</span>       - Print professional profile summary
+  <span class="term-highlight">skills</span>      - Print program & technical skills matrix
+  <span class="term-highlight">experience</span>  - List program delivery & analyst history
   <span class="term-highlight">projects</span>    - List featured github projects
-  <span class="term-highlight">contact</span>     - View contact phone and email
-  <span class="term-highlight">secrets</span>     - Run system analytics decrypted diagnostic
+  <span class="term-highlight">contact</span>     - View contact phone, email, and social links
+  <span class="term-highlight">secrets</span>     - Run decrypted core system diagnostic logs
   <span class="term-highlight">clear</span>       - Clear the console output
     `,
     about: () => `
-<span class="term-cyan">SYSTEM DEPLOYMENT ANALYSIS SUMMARY:</span>
-  Rowan is a System Analyst at Bank OCBC Indonesia with over 2 years of experience.
-  Expert in requirements gathering (BRDs/FRDs), API standardizations, microservices, 
-  and database migration architectures.
-  Graduated with Summa Cum Laude honors in Computer Science from Brawijaya University (GPA 3.91).
+<span class="term-cyan">TECHNICAL PROGRAM PROFILE LOADED:</span>
+  Rowan is a System Analyst & Technical Program Lead at Bank OCBC with 3+ years in banking.
+  Specializes in payments, loyalty systems, and large-scale cross-border program execution.
+  Led regional unified platform migrations coordinating 14 engineers, 10+ vendors, 
+  and 4 country representatives.
+  Academic: Bachelor of Computer Science, Brawijaya University (GPA 3.91, Summa Cum Laude).
     `,
     skills: () => `
-<span class="term-purple">SKILLS INVENTORY LOADED:</span>
-  * Core Stacks  : Golang, PostgreSQL, Kafka, RabbitMQ, Swagger/OpenAPI
-  * Front-Ends   : Svelte, JavaScript, CSS3, Streamlit
-  * DevOps Tools : Docker, GitLab CI/CD, Git, Linux
-  * Telemetry    : Prometheus, Grafana telemetry clusters
-  * Frameworks   : BRDs/FRDs, Agile, Scrum sprint lifecycle, UAT schemas
+<span class="term-purple">TPM COMPETENCY DATABASE:</span>
+  * Program delivery : Cross-border coordination, vendor management, product roadmap ownership
+  * Modeling & Specs : BRDs, FSDs, UML sequence modeling, BPMN flows, use cases
+  * Architecture     : Microservices, Event-Driven MQ, ISO 8583 messaging, OJK compliance
+  * Tech Stack       : Golang, Java, Kotlin, PostgreSQL, Redis, Kafka, RabbitMQ, Git
+  * Observability    : Prometheus monitoring, Grafana dashboards, GitLab CI/CD
     `,
     experience: () => `
-<span class="term-cyan">PROFESSIONAL TIMELINE:</span>
-  [1] <span class="term-highlight">System Analyst @ Bank OCBC Indonesia (Jun 2023 - Present)</span>
-      - Represented ID market in a regional unified loyalty program replatform across SG, MY, HK, ID.
-      - Integrated 30+ REST APIs routing 50k requests/hour.
-      - Scaled Redis application caching layer, decreasing latency by 60% (300ms ➔ 50ms).
-      - Promoted Database High Availability (HA) sync, cutting failover downtime by 50%.
-      - Migrated telemetry server stacks from enterprise BTO to Prometheus saving licensing costs.
-  [2] <span class="term-highlight">Backend Intern @ Bank OCBC Indonesia (Sep 2022 - May 2023)</span>
-      - Coded high-concurrency simulators for deposit products using Golang.
+<span class="term-cyan">EXPERIENCE TIMELINE:</span>
+  [1] <span class="term-highlight">System Analyst / Technical Program Lead @ OCBC Indonesia (Jun 2023 - Present)</span>
+      - Governed regional loyalty program migration across SG, MY, HK, ID.
+      - Coordinated 14 engineers, 10+ external vendors, and multi-country stakeholders.
+      - Integrated 15+ external API partners with ISO 8583 switching logic.
+      - Decreased database overhead by 70%+ via application caching layers.
+      - Led database HA migration (slashing failover downtime by 50%).
+      - Mentored intern squad as acting Product Owner.
+  [2] <span class="term-highlight">Backend Developer & QA (Trainee Program) @ OCBC Indonesia (Sep 2022 - May 2023)</span>
+      - Built concurrent Golang simulators for savings and deposit calculations.
     `,
     projects: () => `
-<span class="term-cyan">FEATURED OPEN SOURCE REPOS:</span>
-  * <span class="term-highlight">BacktesterApp</span> (Svelte) - Trading simulator dashboard.
-  * <span class="term-highlight">TradePilot</span> (JavaScript) - Scraping engine & alerts manager.
-  * <span class="term-highlight">ARIMA Forecasting WebApp</span> (Streamlit) - Epidemic trend visualizer.
-  * <span class="term-highlight">Hypertension Stacked LSTM</span> (Python) - Medical ML forecasting model.
-  * <span class="term-highlight">Food Delivery Simulator</span> (Java) - Concurrent queue allocator.
+<span class="term-cyan">SELECTED GITHUB PROJECTS:</span>
+  * <span class="term-highlight">BacktesterApp</span> (Svelte) - Trading backtester analytics panel.
+  * <span class="term-highlight">TradePilot</span> (JavaScript) - Workers scheduler & trading dashboard.
+  * <span class="term-highlight">ARIMA Forecasting WebApp</span> (Streamlit) - Epistemological data tracker.
+  * <span class="term-highlight">Hypertension Stacked LSTM</span> (Python) - deep learning neural model.
+  * <span class="term-highlight">Food Delivery Simulator</span> (Java) - Multithreading task allocator.
     `,
     contact: () => `
-<span class="term-cyan">SECURE CONTACT CHANNELS:</span>
+<span class="term-cyan">COMMUNICATION ENDPOINTS:</span>
   * Email    : albertusrowan@gmail.com
   * Phone    : +62 821-1400-3078
   * LinkedIn : linkedin.com/in/albertus-rowan/
-  * Location : Jakarta, Indonesia
+  * Location : Jakarta, Indonesia (Open to Remote)
     `,
     secrets: () => `
-<span class="term-error">DECRYPTING DIAGNOSTIC PAYLOAD...</span>
+<span class="term-error">DECRYPTING DIAGNOSTIC TELEMETRY LOGS...</span>
   <span class="term-success">[SUCCESS] decryption keys loaded.</span>
-  * Diagnostics: GPA checked: 3.91/4.00 verified.
-  * Easter Egg: Rowan once successfully optimized a complex database transaction block 
-    in bank core loyalty platform that avoided a major deadlock in production!
-  * Did you know: Rowan represented the Indonesian market single-handedly during OCBC's 
-    regional loyalty replatform sync!
+  * GPA verification: 3.91/4.00 Summa Cum Laude.
+  * Achievements: Handled 50,000+ API requests per hour and 20,000+ partner transactions/month.
+  * Easter Egg: Rowan once successfully resolved a high-priority deadlock thread in a core 
+    loyalty database cluster, protecting transaction flow for thousands of mobile card accounts!
     `
   };
 
   function processCommand(cmdText) {
     const cleanCmd = cmdText.trim().toLowerCase();
     
-    // Create new elements for history
     const commandLog = document.createElement("p");
-    commandLog.innerHTML = `<span class="terminal-prompt">rowan@sys-core:~$</span> ${cmdText}`;
+    commandLog.innerHTML = `<span class="terminal-prompt">rowan@tpm-core:~$</span> ${cmdText}`;
     terminalBody.insertBefore(commandLog, terminalInput.parentNode);
 
     if (cleanCmd === "") {
@@ -570,7 +553,6 @@ Available Commands:
     }
 
     if (cleanCmd === "clear") {
-      // Delete everything except welcome
       const welcome = terminalBody.querySelector(".terminal-welcome");
       terminalBody.innerHTML = "";
       terminalBody.appendChild(welcome);
@@ -589,7 +571,6 @@ Available Commands:
     terminalBody.scrollTop = terminalBody.scrollHeight;
   }
 
-  // Listen for enter key
   terminalInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       const command = terminalInput.value;
@@ -598,7 +579,6 @@ Available Commands:
     }
   });
 
-  // Focus input when clicking terminal area
   terminalContainer.addEventListener("click", () => {
     terminalInput.focus();
   });
