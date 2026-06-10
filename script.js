@@ -390,4 +390,17 @@ Available Commands:
   terminalContainer.addEventListener("click", () => {
     terminalInput.focus();
   });
+
+  // Make project cards clickable to open GitHub repo in a new tab
+  const projectCardsList = document.querySelectorAll(".project-card");
+  projectCardsList.forEach(card => {
+    card.addEventListener("click", (e) => {
+      // Don't trigger if clicked directly on an anchor link
+      if (e.target.closest("a")) return;
+      const repoLink = card.querySelector(".project-links a");
+      if (repoLink) {
+        window.open(repoLink.href, "_blank");
+      }
+    });
+  });
 });

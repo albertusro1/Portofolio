@@ -1111,6 +1111,7 @@ body:not(.light-mode) .moon-icon {
   display: flex;
   flex-direction: column;
   height: 100%;
+  cursor: pointer;
 }
 
 .project-card:hover {
@@ -1302,12 +1303,12 @@ body:not(.light-mode) .moon-icon {
   max-width: 450px;
 }
 
-.social-icons {
+.footer-social-links {
   display: flex;
   gap: 16px;
 }
 
-.social-icons a {
+.footer-social-links a {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   color: var(--text-muted);
@@ -1320,11 +1321,18 @@ body:not(.light-mode) .moon-icon {
   transition: all var(--transition-speed) ease;
 }
 
-.social-icons a:hover {
+.footer-social-links a:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
   background: var(--bg-card-hover);
   transform: translateY(-2px);
+}
+
+.footer-social-links a i,
+.footer-social-links a svg {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 .footer-contact-info p {
