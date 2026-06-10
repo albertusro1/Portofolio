@@ -131,45 +131,160 @@
             As a System Analyst, I bridge the gap between engineering teams, external partners, and cross-border bank business stakeholders. My expertise centers on real-time transaction processing (QRIS offsets, API gateway definitions, settlement ledger designs), compliance standards (OJK regulations, data residency), and Agile requirements backlog management.
           </p>
           <div class="about-highlights">
-            <div class="highlight-item">
-              <i data-lucide="users" class="highlight-icon text-cyan"></i>
-              <span>Bridged regional loyalty requirements with 10+ partners & vendors</span>
+            <div class="highlight-item-premium">
+              <div class="highlight-icon-wrapper text-cyan-bg">
+                <i data-lucide="users" class="highlight-icon text-cyan"></i>
+              </div>
+              <div class="highlight-details">
+                <h4>Regional Integration</h4>
+                <p>Bridged regional loyalty requirements with 10+ partners & vendors</p>
+              </div>
             </div>
-            <div class="highlight-item">
-              <i data-lucide="activity" class="highlight-icon text-purple"></i>
-              <span>Designed ISO 8583-aligned message switching & RESTful API schemas</span>
+            <div class="highlight-item-premium">
+              <div class="highlight-icon-wrapper text-purple-bg">
+                <i data-lucide="activity" class="highlight-icon text-purple"></i>
+              </div>
+              <div class="highlight-details">
+                <h4>API & Schema Design</h4>
+                <p>Designed ISO 8583-aligned message switching & RESTful API schemas</p>
+              </div>
             </div>
-            <div class="highlight-item">
-              <i data-lucide="award" class="highlight-icon text-emerald"></i>
-              <span>Mentored junior trainee developer squads on system design specs</span>
+            <div class="highlight-item-premium">
+              <div class="highlight-icon-wrapper text-emerald-bg">
+                <i data-lucide="award" class="highlight-icon text-emerald"></i>
+              </div>
+              <div class="highlight-details">
+                <h4>Squad Mentorship</h4>
+                <p>Mentored junior trainee developer squads on system design specs</p>
+              </div>
             </div>
           </div>
         </div>
         
-        <div class="about-visual-container">
-          <div class="profile-photo-wrapper reveal-right">
-            <img src="rowan_profile.jpg" alt="Albertus Rowan Profile Picture" class="profile-photo">
-          </div>
-          
-          <div class="visual-terminal glass-panel reveal-right delay-2">
-            <div class="visual-header">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-              <span class="visual-title">system_analysis.log</span>
+        <div class="about-visual-container reveal-right">
+          <!-- Premium System Analyst Dashboard -->
+          <div class="analyst-dashboard glass-panel">
+            <!-- Window Header -->
+            <div class="dashboard-header">
+              <div class="window-controls">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="dashboard-tabs">
+                <button class="dash-tab active" data-tab="profile" aria-label="Profile Photo Tab">
+                  <i data-lucide="user" class="tab-icon"></i> <span class="tab-text">profile.jpg</span>
+                </button>
+                <button class="dash-tab" data-tab="architecture" aria-label="Architecture Tab">
+                  <i data-lucide="git-merge" class="tab-icon"></i> <span class="tab-text">architecture.svg</span>
+                </button>
+                <button class="dash-tab" data-tab="logs" aria-label="Logs Tab">
+                  <i data-lucide="terminal" class="tab-icon"></i> <span class="tab-text">analysis.log</span>
+                </button>
+              </div>
             </div>
-            <div class="visual-body font-mono">
-              <p><span class="log-time">[20:11:48]</span> <span class="log-tag info">INFO</span> Loading SA profile...</p>
-              <p><span class="log-time">[20:11:48]</span> <span class="log-tag success">SUCCESS</span> Credentials verified</p>
-              <p><span class="log-time">[20:11:49]</span> <span class="log-tag info">INFO</span> Title: System Analyst</p>
-              <p><span class="log-time">[20:11:49]</span> <span class="log-tag info">INFO</span> Platform: Regional Loyalty Replatform</p>
-              <p><span class="log-time">[20:11:50]</span> <span class="log-tag warn">WARN</span> Compliance: OJK Data-Residency Active</p>
-              <p><span class="log-time">[20:11:50]</span> <span class="log-tag info">INFO</span> Integration: ISO 8583 switching active</p>
-              <p><span class="log-time">[20:11:51]</span> <span class="log-tag info">INFO</span> Backlog: 400+ User Stories Created</p>
-              <p><span class="log-time">[20:11:51]</span> <span class="log-tag info">INFO</span> Trainee mentoring: Mentorship active</p>
+            
+            <!-- Window Body -->
+            <div class="dashboard-body">
+              <!-- Tab 1: Profile View -->
+              <div class="dash-content active" id="dash-profile">
+                <div class="profile-image-container">
+                  <img src="rowan_profile.jpg" alt="Albertus Rowan Profile Picture" class="dashboard-profile-img">
+                  <!-- Tech HUD Overlays -->
+                  <div class="hud-badge top-left">
+                    <span class="hud-pulse"></span> SYS_ANALYST.EXE
+                  </div>
+                  <div class="hud-badge top-right">
+                    <i data-lucide="database" class="hud-icon"></i> DB_HA_ACTIVE
+                  </div>
+                  <div class="hud-stats-overlay">
+                    <div class="hud-stat-item">
+                      <span class="hud-stat-val">GPA 3.91</span>
+                      <span class="hud-stat-lbl">Summa Cum Laude</span>
+                    </div>
+                    <div class="hud-stat-divider"></div>
+                    <div class="hud-stat-item">
+                      <span class="hud-stat-val">50K+/hr</span>
+                      <span class="hud-stat-lbl">Throughput Optimized</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Tab 2: Architecture View -->
+              <div class="dash-content" id="dash-architecture">
+                <div class="architecture-diagram font-mono">
+                  <div class="diagram-title">REGIONAL INTEGRATION BLUEPRINT</div>
+                  
+                  <div class="diagram-flow">
+                    <!-- Node 1: Partner -->
+                    <div class="diagram-node client">
+                      <div class="node-icon-circle text-cyan-bg">
+                        <i data-lucide="globe"></i>
+                      </div>
+                      <span class="node-name">Partner API</span>
+                      <span class="node-desc">iPay88 / KAI</span>
+                    </div>
+                    
+                    <!-- Connector 1 -->
+                    <div class="diagram-connector">
+                      <div class="connector-line-glow">
+                        <span class="data-pulse c1-pulse"></span>
+                      </div>
+                      <span class="connector-label">ISO 8583</span>
+                    </div>
+                    
+                    <!-- Node 2: Gateway -->
+                    <div class="diagram-node gateway">
+                      <div class="node-icon-circle text-purple-bg">
+                        <i data-lucide="shield-check"></i>
+                      </div>
+                      <span class="node-name">API Gateway</span>
+                      <span class="node-desc">Enterprise Switch</span>
+                    </div>
+                    
+                    <!-- Connector 2 -->
+                    <div class="diagram-connector">
+                      <div class="connector-line-glow">
+                        <span class="data-pulse c2-pulse"></span>
+                      </div>
+                      <span class="connector-label">REST/JSON</span>
+                    </div>
+                    
+                    <!-- Node 3: Core -->
+                    <div class="diagram-node core">
+                      <div class="node-icon-circle text-emerald-bg">
+                        <i data-lucide="cpu"></i>
+                      </div>
+                      <span class="node-name">Loyalty Core</span>
+                      <span class="node-desc">4-Co Unified</span>
+                    </div>
+                  </div>
+                  
+                  <div class="diagram-specs-footer">
+                    <div class="spec-badge"><span class="spec-dot cyan"></span> ISO 8583 Messaging</div>
+                    <div class="spec-badge"><span class="spec-dot purple"></span> Redis Caching</div>
+                    <div class="spec-badge"><span class="spec-dot emerald"></span> OJK Compliant</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Tab 3: Logs View -->
+              <div class="dash-content" id="dash-logs">
+                <div class="terminal-logs font-mono">
+                  <p><span class="log-time">[20:11:48]</span> <span class="log-tag info">INFO</span> Loading SA profile...</p>
+                  <p><span class="log-time">[20:11:48]</span> <span class="log-tag success">SUCCESS</span> Credentials verified</p>
+                  <p><span class="log-time">[20:11:49]</span> <span class="log-tag info">INFO</span> Title: System Analyst</p>
+                  <p><span class="log-time">[20:11:49]</span> <span class="log-tag info">INFO</span> Platform: Regional Loyalty Replatform</p>
+                  <p><span class="log-time">[20:11:50]</span> <span class="log-tag warn">WARN</span> Compliance: OJK Data-Residency Active</p>
+                  <p><span class="log-time">[20:11:50]</span> <span class="log-tag info">INFO</span> Integration: ISO 8583 switching active</p>
+                  <p><span class="log-time">[20:11:51]</span> <span class="log-tag info">INFO</span> Backlog: 400+ User Stories Created</p>
+                  <p><span class="log-time">[20:11:51]</span> <span class="log-tag info">INFO</span> Trainee mentoring: Mentorship active</p>
+                  <p class="blinking-cursor-line"><span class="log-time">[20:11:52]</span> <span class="log-tag success">READY</span> Systems online. Standing by<span class="cursor">_</span></p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </section>

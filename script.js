@@ -422,6 +422,29 @@ Available Commands:
   });
 
   // ----------------------------------------------------
+  // Dashboard Tab Toggling (Section 01 Visual)
+  // ----------------------------------------------------
+  const dashTabs = document.querySelectorAll(".dash-tab");
+  const dashContents = document.querySelectorAll(".dash-content");
+
+  dashTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const targetTab = tab.getAttribute("data-tab");
+
+      // Deactivate all tabs and contents
+      dashTabs.forEach(t => t.classList.remove("active"));
+      dashContents.forEach(c => c.classList.remove("active"));
+
+      // Activate clicked tab and target content
+      tab.classList.add("active");
+      const targetContent = document.getElementById(`dash-${targetTab}`);
+      if (targetContent) {
+        targetContent.classList.add("active");
+      }
+    });
+  });
+
+  // ----------------------------------------------------
   // 9. SCROLL REVEAL (INTERSECTION OBSERVER)
   // ----------------------------------------------------
   const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .stagger-container");
